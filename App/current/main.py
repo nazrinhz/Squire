@@ -4,7 +4,6 @@ import os
 
 baseLocationStr = os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
 sys.path.append(baseLocationStr)
-import Sending_Test_Data
 
 app = Flask(__name__)
 
@@ -23,7 +22,12 @@ def button():
 
 @app.route("/test")
 def test():
-    return baseLocationStr
+    file_path = baseLocationStr + "Sending_Test_Data.py"
+    try:
+      os.system(f'python {file_path}')
+    except FileNotFoundError:
+      print(f"Error: The file '{file_path}' does not exist.")
+    return "is running"
 
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=8080, debug=True)
