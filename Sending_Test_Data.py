@@ -27,10 +27,11 @@ def _headers():
     }
     return headers
     
-def send_command():
+def send_command(command, request_string):
+    current_command = command
     resp = requests.post(
         _command_url(),
-        json={"request": "goblin deez nuts"},
+        json={"request": request_string},
         headers=_headers()
     )
     print(resp.json())
@@ -61,6 +62,6 @@ while iotc.is_connected():
     # iotc.send_telemetry(sample.to_dict('records'))
     # iotc.send_telemetry({'RainTomorrow': str(y_pred[0])})
     # time.sleep(random.randint(5,60))
-    send_command()
+    send_command("roll", "1d6")
     # print (_command_url())
     time.sleep(4)
