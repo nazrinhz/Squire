@@ -47,6 +47,7 @@ def database(action, filepath, view):
 
 def combat(action):
   # show/hide info
+  pass
 
 
 

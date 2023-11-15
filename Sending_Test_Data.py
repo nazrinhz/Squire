@@ -1,9 +1,6 @@
 import requests
 import random
 import time
-import pandas as pd
-import numpy as np
-import pickle
 
 from iotc.models import Command, Property
 from iotc import IoTCClient, IOTCConnectType, IOTCEvents
@@ -45,23 +42,11 @@ iotc = IoTCClient(
 
 iotc.connect()
 
-filename = 'X_test.csv'
-testing_data = pd.read_csv(filename)
-
 iotc.send_property({
     "LastTurnedOn": time.time()
 })
 
 while iotc.is_connected():
-    # sample = testing_data.sample(1)
-    # with open("iot_model", "rb") as model_file:
-    #     model = pickle.load(model_file)
-    # y_pred = model.predict(sample)
-    # if y_pred[0] == 1:
-        # send_command()
-    # iotc.send_telemetry(sample.to_dict('records'))
-    # iotc.send_telemetry({'RainTomorrow': str(y_pred[0])})
-    # time.sleep(random.randint(5,60))
     send_command("roll", "1d6")
     # print (_command_url())
     time.sleep(4)
