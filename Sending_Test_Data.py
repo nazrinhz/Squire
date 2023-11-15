@@ -25,7 +25,9 @@ def _headers():
     return headers
     
 def send_command(command, request_string):
+    global current_command
     current_command = command
+    # print(_command_url())
     resp = requests.post(
         _command_url(),
         json={"request": request_string},

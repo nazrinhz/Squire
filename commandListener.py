@@ -15,7 +15,7 @@ def on_commands(command: Command):
     case "SendData":
       pprint(vars(command))
     case "roll":
-      roll(command.value)
+      roll(command.value, True)
     case "feature":
       spl_pl = command.value.split(" ")
       feature(spl_pl[0], spl_pl[1]) # change to read object
