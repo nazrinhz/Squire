@@ -17,8 +17,8 @@ def on_commands(command: Command):
     case "roll":
       roll(command.value, True)
     case "feature":
-      spl_pl = command.value.split(" ")
-      feature(spl_pl[0], spl_pl[1]) # change to read object
+      print(command.value)
+      # feature(spl_pl[0], spl_pl[1]) # change to read object
     case "image":
       spl_pl = command.value.split(" ")
       image(spl_pl[0], spl_pl[1])
@@ -29,6 +29,11 @@ def on_commands(command: Command):
 def roll(die_string, view):
   literals = die_string.split(" ")
   print(literals)
+  for token in literals:
+    if token.find("+") != -1:
+      value = roll(token, view)
+    pass
+  # return literals
 
 def feature(filepath, view):
   with open(filepath) as file:

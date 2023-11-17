@@ -24,13 +24,13 @@ def _headers():
     }
     return headers
     
-def send_command(command, request_string):
+def send_command(command, request):
     global current_command
     current_command = command
     # print(_command_url())
     resp = requests.post(
         _command_url(),
-        json={"request": request_string},
+        json={"request": request},
         headers=_headers()
     )
     print(resp.json())
@@ -49,6 +49,7 @@ iotc.send_property({
 })
 
 while iotc.is_connected():
-    send_command("roll", "1d6")
+    # send_command("roll", "1d6")
+    send_command("feature", {"filepath":"idk", "view":True})
     # print (_command_url())
     time.sleep(4)
