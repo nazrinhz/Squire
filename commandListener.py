@@ -1,5 +1,6 @@
 import random
 import time
+import json
 from iotc.models import Command, Property
 from iotc import IoTCClient, IOTCConnectType, IOTCEvents
 from pprint import pprint
@@ -18,7 +19,8 @@ def on_commands(command: Command):
       roll(command.value, True)
     case "feature":
       print(command.value)
-      # feature(spl_pl[0], spl_pl[1]) # change to read object
+      print(type(command.value))
+      feature(command.value["filepath"], command.value["view"])
     case "image":
       spl_pl = command.value.split(" ")
       image(spl_pl[0], spl_pl[1])
@@ -36,8 +38,9 @@ def roll(die_string, view):
   # return literals
 
 def feature(filepath, view):
+  print("here")
   with open(filepath) as file:
-    print(file.readline)
+    print(file.readline())
   pass
 
 def image(filepath, view):
