@@ -50,6 +50,6 @@ iotc.send_property({
 
 while iotc.is_connected():
     # send_command("roll", "1d6")
-    send_command("feature", {"filepath":"commandListener.py", "view":True})
+    send_command("feature", {"filepath":"5etools/data/spells/spells-phb.json", "view":True})
     # print (_command_url())
     time.sleep(4)
