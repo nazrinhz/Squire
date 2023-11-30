@@ -20,7 +20,7 @@ def on_commands(command: Command):
     case "feature":
       print(command.value)
       # print(type(command.value))
-      feature(command.value["filepath"], command.value["feature name"], command.value["view"])
+      feature(command.value["filepath"], command.value["featurename"], command.value["view"])
     case "image":
       spl_pl = command.value.split(" ")
       image(spl_pl[0], spl_pl[1])
@@ -41,8 +41,8 @@ def feature(filepath, name, view):
   print("here")
   with open(filepath) as file:
     filejson = json.load(file)
-    # print(filejson[0])
-    type(filejson[0])
+    print(filejson)
+    # type(filejson[0])
     # go from printing to putting on a widget
     # print(file.readline())
   pass
@@ -61,7 +61,7 @@ def combat(action):
   # show/hide info
   pass
 
-
+feature("./5etools/data/spells/spells-phb.json","Magic Missile", True)
 
 iotc = IoTCClient(device_id, scope_id, IOTCConnectType.IOTC_CONNECT_DEVICE_KEY,device_key)
 
