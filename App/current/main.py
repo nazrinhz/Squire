@@ -1,6 +1,7 @@
-from flask import Flask
+from flask import Flask, render_template
 import sys
 import os
+import subprocess
 
 baseLocationStr = os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
 sys.path.append(baseLocationStr)
@@ -9,7 +10,7 @@ app = Flask(__name__)
 
 @app.route("/dm")
 def DMSide():
-    return "Welcome, Dungeon Master!"
+    return render_template("dm.html")
 
 @app.route("/player<int:number>")
 def PlayerSide(number):
@@ -19,6 +20,13 @@ def PlayerSide(number):
 @app.route("/button")
 def button():
     return "<button>Click Here!</button>"
+
+@app.route('/run_script', methods=['POST'])
+def run_script():
+    # Run your Python script here
+    subprocess.run(['python', 'Sending_Test_Data.py'])
+    return 'Script executed successfully!'
+
 
 @app.route("/test")
 def test():
