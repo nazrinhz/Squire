@@ -19,8 +19,8 @@ def on_commands(command: Command):
       roll(command.value, True)
     case "feature":
       print(command.value)
-      print(type(command.value))
-      feature(command.value["filepath"], command.value["view"])
+      # print(type(command.value))
+      feature(command.value["filepath"], command.value["feature name"], command.value["view"])
     case "image":
       spl_pl = command.value.split(" ")
       image(spl_pl[0], spl_pl[1])
@@ -37,10 +37,13 @@ def roll(die_string, view):
     pass
   # return literals
 
-def feature(filepath, view):
+def feature(filepath, name, view):
   print("here")
   with open(filepath) as file:
-    print(file.readline())
+    filejson = json.load(file)
+    print(filejson[name])
+    # go from printing to putting on a widget
+    # print(file.readline())
   pass
 
 def image(filepath, view):
