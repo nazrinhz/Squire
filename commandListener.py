@@ -41,7 +41,8 @@ def feature(filepath, name, view):
   print("here")
   with open(filepath) as file:
     filejson = json.load(file)
-    print(filejson[name])
+    print(filejson[0])
+    type(filejson[0])
     # go from printing to putting on a widget
     # print(file.readline())
   pass
