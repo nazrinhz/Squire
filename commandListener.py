@@ -39,10 +39,10 @@ def roll(die_string, view):
 
 def feature(filepath, name, view):
   print("here")
-  with open(filepath) as file:
-    filejson = json.load(file)
-    print(filejson[0])
-    type(filejson[0])
+  filejson = json.load(filepath)
+  print(filejson[0])
+  type(filejson[0])
+  # with open(filepath) as file:
     # go from printing to putting on a widget
     # print(file.readline())
   pass
