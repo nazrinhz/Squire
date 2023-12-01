@@ -27,7 +27,7 @@ def button():
 @app.route('/run_script', methods=['POST'])
 def run_script():
     # Run your Python script here
-    subprocess.run(['python', 'Sending_Test_Data.py','picture'])
+    subprocess.run(['python', 'App\current\Sending_Test_Data.py','picture'])
     return redirect("/dm")
 
 

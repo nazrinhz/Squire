@@ -64,6 +64,7 @@ def feature(filepath, name, view):
   pass
 
 def image(filepath, view):
+  print(filepath)
   # load from string
   image_ = Image.open(filepath)
   image_ = image_.resize((256, 256))
