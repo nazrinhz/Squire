@@ -7,6 +7,7 @@ from pprint import pprint
 import tkinter
 import sys
 import os
+from PIL import ImageTk, Image
 
 if os.environ.get('DISPLAY','') == '':
     print('no display found. Using :0.0')
@@ -62,11 +63,13 @@ def feature(filepath, name, view):
 
 def image(filepath, view):
   # load from string
-  canvas = tkinter.Canvas(master, width = 300, height = 300)
-  canvas.pack()
-  img = tkinter.PhotoImage(file="Aarakocra.png")
-  canvas.create_image(20,20, image=img)
-  pass
+  image_ = Image.open(filepath)
+  image_ = image_.resize((256, 256))
+  img = ImageTk.PhotoImage(image_)
+  img_label = tkinter.Label(master, image=img)
+  img_label.image = img
+  img_label.pack()
+pass
 
 def database(action, filepath, view):
   # if add, do this
@@ -77,8 +80,6 @@ def database(action, filepath, view):
 def combat(action):
   # show/hide info
   pass
-
-# feature("./5etools/data/spells/spells-phb.json","Magic Missile", True)
 
 iotc = IoTCClient(device_id, scope_id, IOTCConnectType.IOTC_CONNECT_DEVICE_KEY,device_key)
 
@@ -99,7 +100,11 @@ label1 = tkinter.Label(master, text='Features!!')
 # Lay out label
 label1.pack()
 
+# feature("./5etools/data/spells/spells-phb.json","Magic Missile", True)
+image("5etools/MM/Aarakocra.png", True)
+
 # Run forever!
 master.mainloop()
+
 while iotc.is_connected():
   time.sleep(60)
