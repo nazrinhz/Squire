@@ -5,68 +5,66 @@
 <!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
 <head>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@300;400&display=swap');
+
         /* 通用样式 */
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
+            font-family: 'Open Sans', sans-serif;
+            background-color: #1c1c1c;
+            color: #ffffff;
             line-height: 1.6;
             padding: 20px;
             margin: 0;
+            background-image: linear-gradient(to right, #0f2027, #203a43, #2c5364);
         }
-
+        
         /* 标题样式 */
         h1 {
-            color: #444;
+            font-family: 'Montserrat', sans-serif;
+            color: #ffcc00;
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
+            font-size: 2.8em;
         }
-
+        
         /* 表单和按钮样式 */
         form {
-            background: #fff;
+            background: rgba(0, 0, 0, 0.7);
             padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
             margin-bottom: 20px;
+            max-width: 400px;
+            margin: 20px auto;
         }
-
+        
         button {
             display: block;
-            width: 100px;
-            height: 100px;
-            padding: 10px;
+            width: 100%;
+            padding: 15px;
             border: none;
             border-radius: 5px;
-            background-color: #5c6bc0;
-            color: white;
-            font-size: 16px;
+            background-image: linear-gradient(to right, #f6d365, #fda085);
+            color: black;
+            font-size: 18px;
             cursor: pointer;
-            margin-top: 10px;
+            margin-top: 20px;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s, box-shadow 0.2s;
         }
-
+        
         button:hover {
-            background-color: #3f51b5;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
         }
-
+        
         /* 响应式设计 */
-        @media (max-width: 600px) {
-            body {
-                padding: 10px;
-            }
-
-            form {
-                padding: 10px;
+        @media (max-width: 768px) {
+            body, form {
+                padding: 15px;
             }
         }
-
-        /* Grid Layout */
-        .form-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-            gap: 20px;
-        }
-
+        
     </style>
 </head>
 <html>
