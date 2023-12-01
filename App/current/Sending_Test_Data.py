@@ -1,6 +1,7 @@
 import requests
 import random
 import time
+import sys
 
 from iotc.models import Command, Property
 from iotc import IoTCClient, IOTCConnectType, IOTCEvents
@@ -50,7 +51,8 @@ iotc.send_property({
 
 #if iotc.is_connected():
 # send_command("roll", "1d6")
+# send_command(sys.argv[], sys.argv[])
 send_command("feature", {"filepath":"./5etools/data/spells/spells-phb.json", "featurename":"Magic Missile", "view":True})
-send_command("feature", {"filepath":"5etools/MM/Aarakocra.png", "view":True})
+send_command("image", {"filepath":"5etools/MM/Aarakocra.png", "view":True})
 # print (_command_url())
 time.sleep(4)

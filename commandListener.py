@@ -104,7 +104,7 @@ label1 = tkinter.Label(master, text='Features!!')
 label1.pack()
 
 # feature("./5etools/data/spells/spells-phb.json","Magic Missile", True)
-image("5etools/MM/Aarakocra.png", True)
+# image("5etools/MM/Aarakocra.png", True)
 
 # Run forever!
 master.mainloop()
