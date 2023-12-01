@@ -95,7 +95,7 @@ iotc.send_property({"LastTurnedOn": time.time()})
 #create main window
 master = tkinter.Tk()
 master.title("tester")
-master.geometry("800x800")
+master.geometry("1200x1200")
 
 
 #make a label for the window
@@ -104,7 +104,7 @@ label1 = tkinter.Label(master, text='Features!!')
 label1.pack()
 
 # feature("./5etools/data/spells/spells-phb.json","Magic Missile", True)
-# image("5etools/MM/Aarakocra.png", True)
+image("5etools/MM/Aarakocra.png", True)
 
 # Run forever!
 master.mainloop()
