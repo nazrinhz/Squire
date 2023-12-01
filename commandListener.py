@@ -29,8 +29,7 @@ def on_commands(command: Command):
       # print(type(command.value))
       feature(command.value["filepath"], command.value["featurename"], command.value["view"])
     case "image":
-      spl_pl = command.value.split(" ")
-      image(spl_pl[0], spl_pl[1])
+      image(command.value["filepath"], command.value["view"])
 
   iotc.send_property({"LastCommandReceived": command.name})
   command.reply()
@@ -51,6 +50,9 @@ def feature(filepath, name, view):
     obj_list = filejson["spell"]
     featurejson = next((x for x in obj_list if x["name"] == name), None)
     print(next((x for x in obj_list if x["name"] == name), None))
+    feature_box = tkinter.Frame()
+    name = tkinter.Label(feature_box, text=featurejson["name"])
+
     features = tkinter.Label(master, text=featurejson)
     features.pack()
     # type(filejson[0])
@@ -60,6 +62,10 @@ def feature(filepath, name, view):
 
 def image(filepath, view):
   # load from string
+  canvas = tkinter.Canvas(master, width = 300, height = 300)
+  canvas.pack()
+  img = tkinter.PhotoImage(file="Aarakocra.png")
+  canvas.create_image(20,20, image=img)
   pass
 
 def database(action, filepath, view):
@@ -85,7 +91,7 @@ iotc.send_property({"LastTurnedOn": time.time()})
 #create main window
 master = tkinter.Tk()
 master.title("tester")
-master.geometry("300x100")
+master.geometry("800x800")
 
 
 #make a label for the window
