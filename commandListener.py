@@ -4,6 +4,13 @@ import json
 from iotc.models import Command, Property
 from iotc import IoTCClient, IOTCConnectType, IOTCEvents
 from pprint import pprint
+import tkinter
+import sys
+import os
+
+if os.environ.get('DISPLAY','') == '':
+    print('no display found. Using :0.0')
+    os.environ.__setitem__('DISPLAY', ':0.0')
 
 scope_id = '0ne00ADFF24'
 device_id = 'znvog4j7bm'
@@ -42,7 +49,10 @@ def feature(filepath, name, view):
   with open(filepath) as file:
     filejson = json.load(file)
     obj_list = filejson["spell"]
+    featurejson = next((x for x in obj_list if x["name"] == name), None)
     print(next((x for x in obj_list if x["name"] == name), None))
+    features = tkinter.Label(master, text=featurejson)
+    features.pack()
     # type(filejson[0])
     # go from printing to putting on a widget
     # print(file.readline())
@@ -72,5 +82,18 @@ iotc.on(IOTCEvents.IOTC_COMMAND, on_commands)
 
 iotc.send_property({"LastTurnedOn": time.time()})
 
+#create main window
+master = tkinter.Tk()
+master.title("tester")
+master.geometry("300x100")
+
+
+#make a label for the window
+label1 = tkinter.Label(master, text='Features!!')
+# Lay out label
+label1.pack()
+
+# Run forever!
+master.mainloop()
 while iotc.is_connected():
   time.sleep(60)
