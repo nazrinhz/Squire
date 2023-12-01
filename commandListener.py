@@ -24,7 +24,7 @@ def on_commands(command: Command):
     case "SendData":
       pprint(vars(command))
     case "roll":
-      roll(command.value, True)
+      roll(command.value["quantity"], command.value["numofsides"],command.value["modifier"], command.value["publicprivate"], command.value["showhide"])
     case "feature":
       print(command.value)
       # print(type(command.value))
@@ -35,13 +35,15 @@ def on_commands(command: Command):
   iotc.send_property({"LastCommandReceived": command.name})
   command.reply()
 
-def roll(die_string, view):
-  literals = die_string.split(" ")
-  print(literals)
-  for token in literals:
-    if token.find("+") != -1:
-      value = roll(token, view)
-    pass
+def roll(quantity,sides,mod,pub, view):
+  sum = mod
+  i = 0
+  for i in quantity:
+    sum += random.randint(1,sides)
+  output = "The total roll of " + quantity + "d" + sides + "+" + mod + "is: " + sum 
+  total = tkinter.Label(master, text=output)
+  total.pack() 
+  pass
   # return literals
 
 def feature(filepath, name, view):
