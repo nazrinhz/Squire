@@ -8,14 +8,17 @@ sys.path.append(baseLocationStr)
 
 app = Flask(__name__)
 
+@app.route("/")
+def Menu():
+    return render_template("menu.html")
+
 @app.route("/dm")
 def DMSide():
     return render_template("dm.html")
 
-@app.route("/player<int:number>")
-def PlayerSide(number):
-    str2 = "Welcome, player "+str(number)
-    return str2
+@app.route("/player")
+def PlayerSide():
+    return render_template("player.html")
 
 @app.route("/button")
 def button():
