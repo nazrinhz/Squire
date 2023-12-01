@@ -41,7 +41,8 @@ def feature(filepath, name, view):
   print("here")
   with open(filepath) as file:
     filejson = json.load(file)
-    print(filejson)
+    obj_list = filejson["spell"]
+    print(next((x for x in obj_list if x["name"] == name), None))
     # type(filejson[0])
     # go from printing to putting on a widget
     # print(file.readline())
@@ -61,7 +62,7 @@ def combat(action):
   # show/hide info
   pass
 
-feature("./5etools/data/spells/spells-phb.json","Magic Missile", True)
+# feature("./5etools/data/spells/spells-phb.json","Magic Missile", True)
 
 iotc = IoTCClient(device_id, scope_id, IOTCConnectType.IOTC_CONNECT_DEVICE_KEY,device_key)
 
