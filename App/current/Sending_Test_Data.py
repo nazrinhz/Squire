@@ -3,9 +3,6 @@ import random
 import time
 import sys
 
-from iotc.models import Command, Property
-from iotc import IoTCClient, IOTCConnectType, IOTCEvents
-
 iotc_sub_domain = "custom-2jfbg7ldg76"
 scope_id = '0ne00ADFF24'
 device_id = 'ev60wc1npj'
@@ -36,23 +33,10 @@ def send_command(command, request):
     )
     print(resp.json())
 
-iotc = IoTCClient(
-    device_id,
-    scope_id,
-        IOTCConnectType.IOTC_CONNECT_DEVICE_KEY,
-        device_key)
-
-
-iotc.connect()
-
-iotc.send_property({
-    "LastTurnedOn": time.time()
-})
-
-#if iotc.is_connected():
-# send_command("roll", "1d6")
-# send_command(sys.argv[], sys.argv[])
-send_command("feature", {"filepath":"./5etools/data/spells/spells-phb.json", "featurename":"Magic Missile", "view":True})
-send_command("image", {"filepath":"5etools/MM/Aarakocra.png", "view":True})
-# print (_command_url())
-time.sleep(4)
+switch(sys.argv[1])
+path = "5etools/MM/" + sys.argv[2] + ".png"
+print(path)
+send_command(sys.argv[1], {"filepath":path, "view":True})
+# send_command("feature", {"filepath":"./5etools/data/spells/spells-phb.json", "featurename":"Magic Missile", "view":True})
+# send_command("roll", {"quantity":8, "sides":6, "modifier":0, "pub":True, "view":True})
+# send_command("image", {"filepath":"5etools/MM/Aarakocra.png", "view":True})

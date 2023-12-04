@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect
+from flask import Flask, render_template, redirect, request, url_for, flash
 import sys
 import os
 import subprocess
@@ -27,7 +27,9 @@ def button():
 @app.route('/run_script', methods=['POST'])
 def run_script():
     # Run your Python script here
-    subprocess.run(['python', 'App\current\Sending_Test_Data.py','picture'])
+    object_type = request.form["type"]
+    object_name = request.form["object_name"]
+    subprocess.run(['python', 'App\current\Sending_Test_Data.py',object_type,object_name])
     return redirect("/dm")
 
 
