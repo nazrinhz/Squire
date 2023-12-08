@@ -102,7 +102,7 @@ def feature(filepath, name, view):
         dur_text = f'Duration: {featurejson["duration"][0]["duration"]["amount"]} {featurejson["duration"][0]["duration"]["type"]}'
       elif featurejson["duration"][0]["type"] == "instant":
         dur_text = f'Duration: Instantaneous'
-      if featurejson["duration"][0]["concentration"] == True:
+      if "concentration" in featurejson["duration"][0]:
         dur_text = dur_text + "Requires Concentration"
       dur_widget = tkinter.Label(feature_box,text=dur_text,justify='left',wraplength=500)
 
