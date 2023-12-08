@@ -55,8 +55,25 @@ def feature(filepath, name, view):
     obj_list = filejson["spell"]
     featurejson = next((x for x in obj_list if x["name"] == name), None)
     print(next((x for x in obj_list if x["name"] == name), None))
-    feature_box = tkinter.Frame(master, height=10,width=10)
-    name = tkinter.Label(feature_box, text=featurejson["name"])
+    feature_box = tkinter.Frame(master, height=10,width=20)
+    name = tkinter.Label(feature_box, text=featurejson["name"], font=("Arial", 20))
+    where_in_book = f'{featurejson["source"]} {featurejson["page"]}'
+    source = tkinter.Label(feature_box, text=where_in_book)
+    if featurejson["level"] == 1:
+      spell_info = f'1st-level {get_spell_type(featurejson["school"])}'
+    elif featurejson["level"] == 2:
+      spell_info = f'2nd-level {get_spell_type(featurejson["school"])}'
+    elif featurejson["level"] == 3:
+      spell_info = f'3rd-level {get_spell_type(featurejson["school"])}'
+    else:
+      spell_info = f'{featurejson["level"]}th-level {get_spell_type(featurejson["school"])}'
+    level = tkinter.Label(feature_box, text=spell_info)
+    casting_time = f'{featurejson["time"][0]["number"]} {featurejson["time"][0]["unit"]}'
+    cast_time = tkinter.Label(feature_box, text=casting_time)
+    spell_range = f''
+
+    for entry in featurejson["entries"]:
+      paragraph = tkinter.Label(feature_box,text=entry, justify='left',wraplength=50)
     
     widgets[1] = feature_box
     output_window()
