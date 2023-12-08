@@ -52,7 +52,7 @@ def feature(filepath, name, view):
   print("here")
   with open(filepath) as file:
     filejson = json.load(file)
-    feature_box = tkinter.Frame(master, height=10,width=20)
+    feature_box = tkinter.Frame(master, height=10,width=50)
     if "spell" in filejson:
       obj_list = filejson["spell"]
       featurejson = next((x for x in obj_list if x["name"] == name), None)
