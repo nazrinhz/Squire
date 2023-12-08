@@ -14,7 +14,7 @@ def Menu():
 
 @app.route("/dm")
 def DMSide():
-    return render_template("dm.html")
+    return render_template("dm2.html")
 
 @app.route("/player")
 def PlayerSide():
