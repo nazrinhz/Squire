@@ -33,7 +33,7 @@ def send_command(command, request):
     )
     print(resp.json())
 
-switch(sys.argv[1])
+# switch(sys.argv[1])
 path = "5etools/MM/" + sys.argv[2] + ".png"
 print(path)
 send_command(sys.argv[1], {"filepath":path, "view":True})
