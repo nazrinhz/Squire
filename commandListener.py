@@ -82,6 +82,26 @@ def feature(filepath, name, view):
     # print(file.readline())
   pass
 
+def get_spell_type(school):
+  if school == "A":
+        return "abjuration"
+  elif school == "C":
+        return "conjuration"
+  elif school == "D":
+        return "divination"
+  elif school == "E":
+        return "enchantment"
+  elif school == "V":
+        return "evocation"
+  elif school == "I":
+        return "illusion"
+  elif school == "N":
+        return "necromancy"
+  elif school == "T":
+        return "transmutation"
+  else:
+        return "Unknown Spell Type"
+
 def image(filepath, view):
   print(filepath)
   # load from string
