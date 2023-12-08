@@ -52,28 +52,39 @@ def feature(filepath, name, view):
   print("here")
   with open(filepath) as file:
     filejson = json.load(file)
-    obj_list = filejson["spell"]
-    featurejson = next((x for x in obj_list if x["name"] == name), None)
-    print(next((x for x in obj_list if x["name"] == name), None))
     feature_box = tkinter.Frame(master, height=10,width=20)
-    name = tkinter.Label(feature_box, text=featurejson["name"], font=("Arial", 20))
-    where_in_book = f'{featurejson["source"]} {featurejson["page"]}'
-    source = tkinter.Label(feature_box, text=where_in_book)
-    if featurejson["level"] == 1:
-      spell_info = f'1st-level {get_spell_type(featurejson["school"])}'
-    elif featurejson["level"] == 2:
-      spell_info = f'2nd-level {get_spell_type(featurejson["school"])}'
-    elif featurejson["level"] == 3:
-      spell_info = f'3rd-level {get_spell_type(featurejson["school"])}'
-    else:
-      spell_info = f'{featurejson["level"]}th-level {get_spell_type(featurejson["school"])}'
-    level = tkinter.Label(feature_box, text=spell_info)
-    casting_time = f'{featurejson["time"][0]["number"]} {featurejson["time"][0]["unit"]}'
-    cast_time = tkinter.Label(feature_box, text=casting_time)
-    spell_range = f''
+    if "spell" in filejson:
+      obj_list = filejson["spell"]
+      featurejson = next((x for x in obj_list if x["name"] == name), None)
+      print(featurejson)
+      name = tkinter.Label(feature_box, text=featurejson["name"], font=("Arial", 20))
+      where_in_book = f'{featurejson["source"]} {featurejson["page"]}'
+      source = tkinter.Label(feature_box, text=where_in_book)
+      if featurejson["level"] == 1:
+        spell_info = f'1st-level {get_spell_type(featurejson["school"])}'
+      elif featurejson["level"] == 2:
+        spell_info = f'2nd-level {get_spell_type(featurejson["school"])}'
+      elif featurejson["level"] == 3:
+        spell_info = f'3rd-level {get_spell_type(featurejson["school"])}'
+      else:
+        spell_info = f'{featurejson["level"]}th-level {get_spell_type(featurejson["school"])}'
+      level = tkinter.Label(feature_box, text=spell_info)
+      casting_time = f'{featurejson["time"][0]["number"]} {featurejson["time"][0]["unit"]}'
+      cast_time = tkinter.Label(feature_box, text=casting_time)
+      spell_range = f''
 
-    for entry in featurejson["entries"]:
-      paragraph = tkinter.Label(feature_box,text=entry, justify='left',wraplength=50)
+      for entry in featurejson["entries"]:
+        paragraph = tkinter.Label(feature_box,text=entry, justify='left',wraplength=50)
+    elif "classFeature" in filejson or "subclassFeature" in filejson:
+      print("fill in class feature")
+    elif "feat" in filejson:
+      print("fill in feat")
+    elif "skill" in filejson:
+      print("fill in skill")
+    elif "race" in filejson:
+      print("fill in racial")
+    elif "something else" in filejson:
+      print("fill in")
     
     widgets[1] = feature_box
     output_window()
@@ -84,23 +95,23 @@ def feature(filepath, name, view):
 
 def get_spell_type(school):
   if school == "A":
-        return "abjuration"
+    return "abjuration"
   elif school == "C":
-        return "conjuration"
+    return "conjuration"
   elif school == "D":
-        return "divination"
+    return "divination"
   elif school == "E":
-        return "enchantment"
+    return "enchantment"
   elif school == "V":
-        return "evocation"
+    return "evocation"
   elif school == "I":
-        return "illusion"
+    return "illusion"
   elif school == "N":
-        return "necromancy"
+    return "necromancy"
   elif school == "T":
-        return "transmutation"
+    return "transmutation"
   else:
-        return "Unknown Spell Type"
+    return "Unknown Spell Type"
 
 def image(filepath, view):
   print(filepath)
