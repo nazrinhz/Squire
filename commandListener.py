@@ -175,7 +175,7 @@ iotc.send_property({"LastTurnedOn": time.time()})
 #create main window
 master = tkinter.Tk()
 master.title("tester")
-master.geometry("1080x720")
+master.geometry("2000x2000")
 
 widgets = [tkinter.Label(master,text="widget 1", height=20,width=20), tkinter.Label(master,text="widget 2", height=20,width=20), tkinter.Label(master,text="widget 3", height=20,width=20)]
 
