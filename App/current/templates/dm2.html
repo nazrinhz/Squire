@@ -99,13 +99,16 @@
     
         <!-- Modal HTML -->
         <div id="myModal1" class="modal">
-            <p>Choose an option:</p>
-            <select id="objectNameOptions1">
-                <option value="Aarakocra">Aarakocra</option>
-                <option value="Option1">Option 1</option>
-                <!-- Add more options as needed -->
-            </select>
-            <button onclick="closeAndSubmitModal('objectNameOptions1')">Submit</button>
+            <form class="form-grid" action="{{ url_for('run_script') }}" method="post">
+                <p>Choose an option:</p>
+                <input name="type" type="hidden" value="image">
+                <select id="objectNameOptions1" name="object_name">
+                    <option value="Aarakocra">Aarakocra</option>
+                    <option value="Option1">Option 1</option>
+                    <!-- Add more options as needed -->
+                </select>
+                <button onclick="closeAndSubmitModal('objectNameOptions1')">Submit</button>
+            </form>
         </div>
         <div id="modalOverlay1" class="modal-overlay"></div>
     

@@ -74,7 +74,7 @@ def feature(filepath, name, view):
       spell_range = f''
 
       for entry in featurejson["entries"]:
-        paragraph = tkinter.Label(feature_box,text=entry, justify='left',wraplength=50)
+        paragraph = tkinter.Label(feature_box,text=entry, justify='left',wraplength=500)
     elif "classFeature" in filejson or "subclassFeature" in filejson:
       print("fill in class feature")
     elif "feat" in filejson:
