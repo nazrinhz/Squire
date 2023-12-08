@@ -166,8 +166,8 @@ label1 = tkinter.Label(master, text='Features!!')
 # Lay out label
 label1.pack()
 
-# feature("./5etools/data/spells/spells-phb.json","Magic Missile", True)
-# image("5etools/MM/Aarakocra.png", True)
+feature("./5etools/data/spells/spells-phb.json","Magic Missile", True)
+image("5etools/MM/Aarakocra.png", True)
 roll(3,6,0,True,True)
 
 # Run forever!
