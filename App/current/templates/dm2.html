@@ -100,16 +100,21 @@
         <!-- Modal HTML -->
         <div id="myModal1" class="modal">
             <form class="form-grid" action="{{ url_for('run_script') }}" method="post">
-                <p>Choose an option:</p>
+                <p>Choose an option and enter the name of the image:</p>
                 <input name="type" type="hidden" value="image">
+                <input type="text" id="textInput1" name="text_input" placeholder="Enter text here">
+                <!-- 保持原有的下拉菜单 -->
                 <select id="objectNameOptions1" name="object_name">
                     <option value="Aarakocra">Aarakocra</option>
                     <option value="Option1">Option 1</option>
                     <!-- Add more options as needed -->
                 </select>
                 <button onclick="closeAndSubmitModal('objectNameOptions1')">Submit</button>
+                <button type="button" onclick="closeModal('myModal1')">Close</button>
+
             </form>
         </div>
+        
         <div id="modalOverlay1" class="modal-overlay"></div>
     
         <button onclick="openModal('myModal1')">Show Picture</button>
@@ -123,6 +128,8 @@
                 <!-- Add more options as needed -->
             </select>
             <button onclick="closeAndSubmitModalm('objectNameOptions2')">Submit</button>
+            <button type="button" onclick="closeModal('myModal2')">Close</button>
+
         </div>
         <div id="modalOverlay2" class="modal-overlay"></div>
     
@@ -147,11 +154,18 @@
                 // Submit the form
                 submitForm(modalId.replace('myModal', 'objectNameOptions'));
             }
+            function closeModal(modalId) {
+                document.getElementById(modalId).style.display = 'none';
+                document.getElementById(modalId.replace('myModal', 'modalOverlay')).style.display = 'none';
     
+            }
+
             function submitForm(selectId) {
                 // Get the selected option from the modal
                 var selectedOption = document.getElementById(selectId).value;
-    
+
+                var textInput = document.getElementById('textInput1').value;
+
                 // Set the value of object_name based on the selected option
                 document.getElementById('formImage').elements['object_name'].value = selectedOption;
     

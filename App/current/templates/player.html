@@ -27,16 +27,6 @@
             font-size: 2.8em;
         }
         
-        /* 表单和按钮样式 */
-        form {
-            background: rgba(0, 0, 0, 0.7);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-            margin-bottom: 20px;
-            max-width: 400px;
-            margin: 20px auto;
-        }
         
         button {
             display: block;
@@ -64,6 +54,31 @@
                 padding: 15px;
             }
         }
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: #333;
+            color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
         
     </style>
 </head>
@@ -78,23 +93,73 @@
     </head>
     <body>
         <h1>Welcome, Player!</h1>
+    
+        <!-- Show Picture Modal -->
+        <div id="pictureModal" class="modal" style="display:none;">
+            <form id="pictureForm" class="form-grid" action="{{ url_for('run_script') }}" method="post">
+                <p>Enter the name of the image:</p>
+                <input type="text" name="image_name" placeholder="Image Name">
+                <button type="submit">Submit</button>
+                <button type="button" onclick="closeModal('pictureModal')">Close</button>
+            </form>
+        </div>
+        <button class="button" onclick="openModal('pictureModal')">Show Picture</button>
+    
+        <!-- Show Feature Modal -->
+        <div id="featureModal" class="modal" style="display:none;">
+            <form id="featureForm" class="form-grid" action="{{ url_for('run_script') }}" method="post">
+                <p>Select the type of feature and enter its name:</p>
+                <select name="feature_type">
+                    <option value="type1">Type 1</option>
+                    <option value="type2">Type 2</option>
+                    <!-- Other types -->
+                </select>
+                <input type="text" name="feature_name" placeholder="Feature Name">
+                <button type="submit">Submit</button>
+                <button type="button" onclick="closeModal('featureModal')">Close</button>
+            </form>
+        </div>
+        
+        <button class="button" onclick="openModal('featureModal')">Show Feature</button>
+
+        <!-- Show Stats Form and Button -->
         <form class="form-grid" action="{{ url_for('run_script') }}" method="post">
-            <button type="submit">Show Picture</button>
-        </form>
-        <form class="form-grid" action="{{ url_for('run_script') }}" method="post">
-            <button type="submit">Show Stats</button>
-        </form>
-        <form class="form-grid" action="{{ url_for('run_script') }}" method="post">
-            <button type="submit">Show Feature</button>
-        </form>
-        <form class="form-grid" action="{{ url_for('run_script') }}" method="post">
-            <button type="submit">Show Combat Tracker</button>
-        </form>
-        <form class="form-grid" action="{{ url_for('run_script') }}" method="post">
-            <button type="submit">Roll</button>
+            <button class="button" type="submit" >Show Stats</button>
         </form>
 
-        
-        <script src="" async defer></script>
+        <form class="form-grid" action="{{ url_for('run_script') }}" method="post">
+            <button class="button" type="submit">Show Combat Tracker</button>
+        </form>
+
+
+        <!-- Roll Dice Modal -->
+        <div id="diceModal" class="modal" style="display:none;">
+            <form id="diceForm" class="form-grid" action="{{ url_for('run_script') }}" method="post">
+                <p>Enter dice count and type:</p>
+                <input type="number" name="dice_count" min="1" placeholder="Dice Count">
+                <select name="dice_type">
+                    <option value="d4">d4</option>
+                    <option value="d6">d6</option>
+                    <!-- Other dice types -->
+                </select>
+                <button type="submit" class="button">Roll</button>
+                <button type="button" onclick="closeModal('diceModal')">Close</button>
+            </form>
+        </div>
+        <button class="button" onclick="openModal('diceModal')">Roll</button>
+    
+        <!-- JavaScript to handle modals -->
+        <script>
+            function openModal(modalId) {
+                document.getElementById(modalId).style.display = 'block';
+                
+            }
+    
+            function closeModal(modalId) {
+                document.getElementById(modalId).style.display = 'none';
+            }
+        </script>
     </body>
+    
+    
 </html>
