@@ -57,9 +57,9 @@ def feature(filepath, name, view):
       obj_list = filejson["spell"]
       featurejson = next((x for x in obj_list if x["name"] == name), None)
       print(featurejson)
-      name = tkinter.Label(feature_box, text=featurejson["name"], font=("Arial", 20))
+      name = tkinter.Label(feature_box, text=featurejson["name"], font=("Arial", 20), justify='left',wraplength=500)
       where_in_book = f'{featurejson["source"]} {featurejson["page"]}'
-      source = tkinter.Label(feature_box, text=where_in_book)
+      source = tkinter.Label(feature_box, text=where_in_book, justify='left',wraplength=500)
       if featurejson["level"] == 1:
         spell_info = f'1st-level {get_spell_type(featurejson["school"])}'
       elif featurejson["level"] == 2:
@@ -68,10 +68,43 @@ def feature(filepath, name, view):
         spell_info = f'3rd-level {get_spell_type(featurejson["school"])}'
       else:
         spell_info = f'{featurejson["level"]}th-level {get_spell_type(featurejson["school"])}'
-      level = tkinter.Label(feature_box, text=spell_info)
+      level = tkinter.Label(feature_box, text=spell_info, justify='left',wraplength=500)
       casting_time = f'{featurejson["time"][0]["number"]} {featurejson["time"][0]["unit"]}'
-      cast_time = tkinter.Label(feature_box, text=casting_time)
-      spell_range = f''
+      cast_time = tkinter.Label(feature_box, text=casting_time, justify='left',wraplength=500)
+      if featurejson["range"]["distance"]["type"] == "self":
+        spell_range = f'Range: Self'
+      elif featurejson["range"]["distance"]["type"] == "touch":
+        spell_range = f'Range: Touch'
+      elif featurejson["range"]["distance"]["type"] == "feet":
+        spell_range = f'Range: {featurejson["range"]["distance"]["amount"]} feet'
+      else:
+        spell_range = f'Range: Special'
+      range_widget = tkinter.Label(feature_box,text=spell_range, justify='left',wraplength=500)
+      comp_text = ''
+      first = True
+      if "v" in featurejson["components"]:
+        comp_text = "Components: V"
+        first = False
+      if "s" in featurejson["components"]:
+        if first:
+          comp_text = "Components: S"
+          first = False
+        else:
+          comp_text = comp_text + ", S"
+      if "m" in featurejson["components"]:
+        if first:
+          comp_text = f"Components: M ({featurejson['components']['m']})"
+          first = False
+        else:
+          comp_text = comp_text + f", M ({featurejson['components']['m']})"
+      component_widget = tkinter.Label(feature_box,text=comp_text, justify="left", wraplength=500)
+      if featurejson["duration"][0]["type"] == "timed":
+        dur_text = f'Duration: {featurejson["duration"][0]["duration"]["amount"]} {featurejson["duration"][0]["duration"]["type"]}'
+      elif featurejson["duration"][0]["type"] == "instant":
+        dur_text = f'Duration: Instantaneous'
+      if "concentration" in featurejson["duration"][0]:
+        dur_text = dur_text + "Requires Concentration"
+      dur_widget = tkinter.Label(feature_box,text=dur_text,justify='left',wraplength=500)
 
       for entry in featurejson["entries"]:
         paragraph = tkinter.Label(feature_box,text=entry, justify='left',wraplength=500)
@@ -142,7 +175,7 @@ iotc.send_property({"LastTurnedOn": time.time()})
 #create main window
 master = tkinter.Tk()
 master.title("tester")
-master.geometry("1080x720")
+master.geometry("2000x2000")
 
 widgets = [tkinter.Label(master,text="widget 1", height=20,width=20), tkinter.Label(master,text="widget 2", height=20,width=20), tkinter.Label(master,text="widget 3", height=20,width=20)]
 
