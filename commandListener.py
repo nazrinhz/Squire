@@ -30,6 +30,11 @@ def on_commands(command: Command):
       feature(command.value["filepath"], command.value["featurename"], command.value["view"])
     case "image":
       image(command.value["filepath"], command.value["view"])
+    case "combat":
+      if "misc_value" in command.value:
+        combat(command.value["action"], command.value["name"], command.value["misc_value"])
+      else:
+        combat(command.value["action"], command.value["name"], 0)
 
   iotc.send_property({"LastCommandReceived": command.name})
   command.reply()
@@ -163,8 +168,63 @@ def database(action, filepath, view):
   # if remove, do this
   pass
 
-def combat(action):
-  # show/hide info
+def combat(action, name, misc_value):
+  initiative_list = widgets[3].winfo_children()
+  initiative_frame = tkinter.Frame(master, height=50, width=10)
+
+  header_entry = tkinter.Frame(initiative_frame)
+  header_text = tkinter.Label(header_entry,text="Initiative Count",wraplength=100)
+  header_name = tkinter.Label(header_entry,text="Name")
+  header_hp = tkinter.Label(header_entry,text="Hit Points")
+  header_cond = tkinter.Label(header_entry,text="Conditions")
+
+  match action:
+    case "open":
+      # do open combat
+      pass
+    case "close":
+      # do close combat
+      pass
+    case "hp":
+      # change HP value
+      pass
+    case "condition":
+      # change conditions of thing
+      pass
+    case "remove conditions":
+      # change conditions of thing
+      pass
+    case "initiative":
+      # add or change someone's init
+      # if widget with name does not exist, make one
+      for widget in initiative_list:
+        print (widget.winfo_children()[1].cget("text"))
+        if widget.winfo_children()[1].cget("text") == name: # if a widget value somewhere is the same as the player's name, change the value and break
+          new_entry = tkinter.Frame(initiative_frame)
+          new_text = tkinter.Label(new_entry, text=str(misc_value))
+          new_name = tkinter.Label(new_entry,text=widget.winfo_children()[1].cget("text"))
+          new_hp = tkinter.Label(new_entry,text=widget.winfo_children()[2].cget("text"))
+          new_cond = tkinter.Label(new_entry,text=widget.winfo_children()[3].cget("text"))
+        elif widget.winfo_children()[1].cget("text") != "Name": # compare initiative values here
+          new_entry = tkinter.Frame(initiative_frame)
+          new_text = tkinter.Label(new_entry, text=widget.winfo_children()[0].cget("text"))
+          new_name = tkinter.Label(new_entry,text=widget.winfo_children()[1].cget("text"))
+          new_hp = tkinter.Label(new_entry,text=widget.winfo_children()[2].cget("text"))
+          new_cond = tkinter.Label(new_entry,text=widget.winfo_children()[3].cget("text"))
+      
+      initiative_entry = tkinter.Frame(initiative_frame)
+      initiative_text = tkinter.Label(initiative_entry,text=str(misc_value))
+      character_name = tkinter.Label(initiative_entry,text=name)
+      character_hp = tkinter.Label(initiative_entry,text="---")
+      character_cond = tkinter.Label(initiative_entry,text="---")
+
+      # if it does, just change the value
+      pass
+    case "clear":
+      # clears the widget
+      pass
+  widgets[3] = initiative_frame
+  output_window()
   pass
 
 iotc = IoTCClient(device_id, scope_id, IOTCConnectType.IOTC_CONNECT_DEVICE_KEY,device_key)
@@ -174,10 +234,10 @@ iotc.send_property({"LastTurnedOn": time.time()})
 
 #create main window
 master = tkinter.Tk()
-master.title("tester")
+master.title("Squire")
 master.geometry("2000x2000")
 
-widgets = [tkinter.Label(master,text="widget 1", height=20,width=20), tkinter.Label(master,text="widget 2", height=20,width=20), tkinter.Label(master,text="widget 3", height=20,width=20)]
+widgets = [tkinter.Label(master,text="widget 1", height=20,width=20), tkinter.Label(master,text="widget 2", height=20,width=20), tkinter.Label(master,text="widget 3", height=20,width=20), tkinter.Label(master,text="widget 4", height=20,width=20)]
 
 def output_window():
   for child in master.winfo_children():
@@ -192,6 +252,17 @@ def output_window():
   widgets[2].grid(column=1,row=0)
   for child in widgets[2].winfo_children():
     child.pack()
+  widgets[3].grid(column=2,row=0, rowspan=2)
+  widgets[3].winfo_children()[0].pack()
+  for grandchild in widgets[3].winfo_children()[0].winfo_children():
+      grandchild.pack(side="left")
+
+  initiative_list = [(child, float(child.winfo_children()[0].cget("text"))) for child in widgets[3].winfo_children()[1:]]
+  init_sorted = sorted(initiative_list, key=lambda x: x[1], reverse=True)
+  for child in init_sorted:
+    child[0].pack()
+    for grandchild in child[0].winfo_children():
+      grandchild.pack(side="left")
   pass
 
 #make a label for the window
@@ -199,9 +270,11 @@ label1 = tkinter.Label(master, text='Features!!')
 # Lay out label
 label1.pack()
 
-feature("./5etools/data/spells/spells-phb.json","Magic Missile", True)
-image("5etools/MM/Aarakocra.png", True)
-roll(3,6,0,True,True)
+# feature("./5etools/data/spells/spells-phb.json","Magic Missile", True)
+# image("5etools/MM/Aarakocra.png", True)
+# roll(3,6,0,True,True)
+combat("initiative", "Fizzcrack", 13)
+combat("initiative", "Varuk", 10)
 
 # Run forever!
 master.mainloop()
