@@ -288,7 +288,7 @@ master = tkinter.Tk()
 master.title("Squire")
 master.geometry("2000x2000")
 
-widgets = [tkinter.Label(master,text="widget 1", height=20,width=20), tkinter.Label(master,text="widget 2", height=20,width=20), tkinter.Label(master,text="widget 3", height=20,width=20), tkinter.Label(master,text="widget 4", height=20,width=20)]
+widgets = [tkinter.Label(master,text="widget 1", height=20,width=20), tkinter.Label(master,text="send a feature command to see it here!", height=20,width=20), tkinter.Label(master,text="widget 3", height=20,width=20), tkinter.Label(master,text="widget 4", height=20,width=20)]
 
 def output_window():
   for child in master.winfo_children():
