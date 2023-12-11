@@ -114,12 +114,53 @@ def feature(filepath, name, view):
       for entry in featurejson["entries"]:
         paragraph = tkinter.Label(feature_box,text=entry, justify='left',wraplength=500)
     elif "classFeature" in filejson or "subclassFeature" in filejson:
-      print("fill in class feature")
+      # determine obj_list based on whether the feature is in the mainclass or subclass list of features
+      sub_feature = False
+      if next((x for x in filejson["classFeature"] if x["name"] == name), None) != None:
+        obj_list = filejson["classFeature"]
+      else:
+        obj_list = filejson["subclassFeature"]
+        sub_feature = True
+      featurejson = next((x for x in obj_list if x["name"] == name), None)
+      print(featurejson)
+      name = tkinter.Label(feature_box, text=featurejson["name"], font=("Arial", 20), justify='left',wraplength=500)
+      where_in_book = f'{featurejson["source"]} {featurejson["page"]}'
+      source = tkinter.Label(feature_box, text=where_in_book, justify='left',wraplength=500)
+      if featurejson["level"] == 1:
+        level_info = f'1st-level {get_spell_type(featurejson["className"])}'
+      elif featurejson["level"] == 2:
+        level_info = f'2nd-level {get_spell_type(featurejson["className"])}'
+      elif featurejson["level"] == 3:
+        level_info = f'3rd-level {get_spell_type(featurejson["className"])}'
+      else:
+        level_info = f'{featurejson["level"]}th-level {get_spell_type(featurejson["className"])}'
+      if sub_feature:
+        level_info = level_info + f' ({featurejson["subclassShortName"]}) Feature'
+      else:
+        level_info = level_info + ' Feature'
+      level = tkinter.Label(feature_box, text=level_info, justify='left',wraplength=500)
+
+      for entry in featurejson["entries"]:
+        paragraph = tkinter.Label(feature_box,text=entry, justify='left',wraplength=500)
+      """ 
+      entries
+      """
+      print("class feature")
+
     elif "feat" in filejson:
+      obj_list = filejson["feat"]
+      featurejson = next((x for x in obj_list if x["name"] == name), None)
+      print(featurejson)
       print("fill in feat")
     elif "skill" in filejson:
+      obj_list = filejson["skill"]
+      featurejson = next((x for x in obj_list if x["name"] == name), None)
+      print(featurejson)
       print("fill in skill")
     elif "race" in filejson:
+      obj_list = filejson["race"]
+      featurejson = next((x for x in obj_list if x["name"] == name), None)
+      print(featurejson)
       print("fill in racial")
     elif "something else" in filejson:
       print("fill in")
@@ -275,6 +316,7 @@ label1.pack()
 # roll(3,6,0,True,True)
 combat("initiative", "Fizzcrack", 13)
 combat("initiative", "Varuk", 10)
+feature("./5etools/data/class/class-rogue.json","Stroke of Luck", True)
 
 # Run forever!
 master.mainloop()
