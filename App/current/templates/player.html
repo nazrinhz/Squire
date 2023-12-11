@@ -116,7 +116,7 @@
             <form id="featureForm" class="form-grid" action="{{ url_for('run_script') }}" method="post">
                 <p>Select the type of feature and enter its name:</p>
                 <input name="type" type="hidden" value="feature">
-                <select name="feature_type">
+                <select name="class_name">
                     <option value="barbarian">Barbarian</option>
                     <option value="bard">Bard</option>
                     <option value="cleric">Cleric</option>
@@ -143,7 +143,7 @@
             <form id="spellForm" class="form-grid" action="{{ url_for('run_script') }}" method="post">
                 <p>Select the type of spell and enter its name:</p>
                 <input name="type" type="hidden" value="spell">
-                <input type="text" name="spell_name" placeholder="Spell Name">
+                <input type="text" name="feature_name" placeholder="Spell Name">
                 <button type="submit">Submit</button>
                 <button type="button" onclick="closeModal('spellModal')">Close</button>
             </form>
@@ -156,7 +156,7 @@
             <form id="featForm" class="form-grid" action="{{ url_for('run_script') }}" method="post">
                 <p>Select the type of feature and enter its name:</p>
                 <input name="type" type="hidden" value="feat">
-                <input type="text" name="feat_name" placeholder="Feat Name">
+                <input type="text" name="feature_name" placeholder="Feat Name">
                 <button type="submit">Submit</button>
                 <button type="button" onclick="closeModal('featModal')">Close</button>
             </form>
@@ -169,12 +169,12 @@
             <form id="featureForm" class="form-grid" action="{{ url_for('run_script') }}" method="post">
                 <p>Input name and value, then select action from the dropdown:</p>
                 <input name="type" type="hidden" value="combat">
-                <input type="text" name="character_name" placeholder="Character Name">
-                <input type="text" name="new_value" placeholder="New Value">
+                <input type="text" name="creature_name" placeholder="Character Name">
+                <input type="text" name="misc_string" placeholder="New Value">
                 <select name="action">
+                    <option value="initiative">Initiative</option>
                     <option value="hp">HP</option>
                     <option value="condition">Condition</option>
-                    <option value="initiative">Initiative</option>
                     <!-- Other types -->
                 </select>
                 <button type="submit">Submit</button>
@@ -192,15 +192,15 @@
                 <input type="number" name="dice_count" min="1" placeholder="Dice Count">
                 <input name="type" type="hidden" value="roll">
                 <select name="dice_type">
-                    <option value="4">d4</option>
-                    <option value="6">d6</option>
-                    <option value="8">d8</option>
-                    <option value="10">d10</option>
-                    <option value="20">d20</option>
-                    <option value="100">d100</option>
+                    <option value=4>d4</option>
+                    <option value=6>d6</option>
+                    <option value=8>d8</option>
+                    <option value=10>d10</option>
+                    <option value=20>d20</option>
+                    <option value=100>d100</option>
                     <!-- Other dice types -->
                 </select>
-                <input type="number" name="modifier" placeholder="Modifier">
+                <input type="number" name="modifier" placeholder="Modifier" value=0>
                 <button type="submit" class="button">Roll</button>
                 <button type="button" onclick="closeModal('diceModal')">Close</button>
             </form>

@@ -42,14 +42,14 @@ def on_commands(command: Command):
   command.reply()
 
 def roll(quantity,sides,mod,pub, view):
-  sum = mod
-  for i in range(quantity):
-    addend = random.randint(1,sides)
+  sum = int(mod)
+  for i in range(int(quantity)):
+    addend = random.randint(1,int(sides))
     sum += addend
   output = f"The total roll of {quantity}d{sides} + {mod} is:"
   roll_frame = tkinter.Frame(master,height=20,width=20,highlightbackground="black",highlightthickness=2,highlightcolor="black")
   roll_text = tkinter.Label(roll_frame, text=output,font=("Arial", 20))
-  roll_value = tkinter.Label(roll_frame, text=str(sum),font=("Arial", 36))
+  roll_value = tkinter.Label(roll_frame, text=str(sum),font=("Arial", 56))
   widgets[0] = roll_frame
   output_window()
   pass
