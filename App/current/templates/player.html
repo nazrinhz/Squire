@@ -95,20 +95,27 @@
         <h1>Welcome, Player!</h1>
     
         <!-- Show Picture Modal -->
-        <div id="pictureModal" class="modal" style="display:none;">
-            <form id="pictureForm" class="form-grid" action="{{ url_for('run_script') }}" method="post">
-                <p>Enter the name of the image:</p>
-                <input type="text" name="image_name" placeholder="Image Name">
-                <button type="submit">Submit</button>
-                <button type="button" onclick="closeModal('pictureModal')">Close</button>
+        <div id="myModal1" class="modal">
+            <form class="form-grid" action="{{ url_for('run_script') }}" method="post">
+                <p>Choose an option and enter the name of the image:</p>
+                <input name="type" type="hidden" value="image">
+                <input type="text" id="textInput1" name="object_name" placeholder="Enter text here">
+                <!-- 保持原有的下拉菜单 -->
+                <button onclick="closeAndSubmitModal('objectNameOptions1')">Submit</button>
+                <button type="button" onclick="closeModal('myModal1')">Close</button>
+
             </form>
         </div>
-        <button class="button" onclick="openModal('pictureModal')">Show Picture</button>
+        
+        <div id="modalOverlay1" class="modal-overlay"></div>
     
-        <!-- Show Feature Modal -->
+        <button onclick="openModal('myModal1')">Show Picture</button>
+    
+        <!-- Show Class Feature Modal -->
         <div id="featureModal" class="modal" style="display:none;">
             <form id="featureForm" class="form-grid" action="{{ url_for('run_script') }}" method="post">
                 <p>Select the type of feature and enter its name:</p>
+                <input name="type" type="hidden" value="feature">
                 <select name="feature_type">
                     <option value="type1">Type 1</option>
                     <option value="type2">Type 2</option>
@@ -120,27 +127,49 @@
             </form>
         </div>
         
-        <button class="button" onclick="openModal('featureModal')">Show Feature</button>
+        <button class="button" onclick="openModal('featureModal')">Show Class Feature</button>
 
-        <!-- Show Stats Form and Button -->
-        <div id="statModal" class="modal" style="display:none;">
-        <form id="statForm" class="form-grid" action="{{ url_for('run_script') }}" method="post">
-            <p>Select the type of feature and enter its name:</p>
-            <select name="stat_type">
-                <option value="type1">Type 1</option>
-                <option value="type2">Type 2</option>
-                <!-- Other types -->
-            </select>
-            <input type="text" name="stat_name" placeholder="Stat Name">
-            <button type="submit">Submit</button>
-            <button type="button" onclick="closeModal('statModal')">Close</button>
-        </form>
+                <!-- Show Spell Modal -->
+                <div id="spellModal" class="modal" style="display:none;">
+                    <form id="spellForm" class="form-grid" action="{{ url_for('run_script') }}" method="post">
+                        <p>Select the type of spell and enter its name:</p>
+                        <input name="type" type="hidden" value="spell">
+                        <select name="spell_type">
+                            <option value="type1">Type 1</option>
+                            <option value="type2">Type 2</option>
+                            <!-- Other types -->
+                        </select>
+                        <input type="text" name="spell_name" placeholder="Spell Name">
+                        <button type="submit">Submit</button>
+                        <button type="button" onclick="closeModal('spellModal')">Close</button>
+                    </form>
+                </div>
+                
+                <button class="button" onclick="openModal('featureModal')">Show Spell Feature</button>
+
+        <!-- Show Feat Modal -->
+        <div id="featModal" class="modal" style="display:none;">
+            <form id="featForm" class="form-grid" action="{{ url_for('run_script') }}" method="post">
+                <p>Select the type of feature and enter its name:</p>
+                <input name="type" type="hidden" value="feat">
+                <select name="feat_type">
+                    <option value="type1">Type 1</option>
+                    <option value="type2">Type 2</option>
+                    <!-- Other types -->
+                </select>
+                <input type="text" name="feat_name" placeholder="Feat Name">
+                <button type="submit">Submit</button>
+                <button type="button" onclick="closeModal('featModal')">Close</button>
+            </form>
         </div>
+        
+        <button class="button" onclick="openModal('featModal')">Show Feature</button>
 
         <!-- Show Combat Tracker Form and Button -->
         <div id="combatModal" class="modal" style="display:none;">
             <form id="featureForm" class="form-grid" action="{{ url_for('run_script') }}" method="post">
                 <p>Input name and value, then select action from the dropdown:</p>
+                <input name="type" type="hidden" value="combat">
                 <input type="text" name="character_name" placeholder="Character Name">
                 <input type="text" name="new_value" placeholder="New Value">
                 <select name="action">
@@ -162,6 +191,7 @@
             <form id="diceForm" class="form-grid" action="{{ url_for('run_script') }}" method="post">
                 <p>Enter dice count and type:</p>
                 <input type="number" name="dice_count" min="1" placeholder="Dice Count">
+                <input name="type" type="hidden" value="roll">
                 <select name="dice_type">
                     <option value="4">d4</option>
                     <option value="6">d6</option>
