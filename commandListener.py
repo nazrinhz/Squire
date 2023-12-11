@@ -36,6 +36,7 @@ def on_commands(command: Command):
       else:
         combat(command.value["action"], command.value["name"], 0)
     case "exit":
+      master.destroy()
       exit()
 
   iotc.send_property({"LastCommandReceived": command.name})

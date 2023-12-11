@@ -114,6 +114,17 @@
     
         <button onclick="openModal('myModal1')">Show Picture</button>
     
+        <!-- Modal HTML -->
+        <div id="exitmodal" class="modal">
+            <form class="form-grid" action="{{ url_for('run_script') }}" method="post">
+                <input name="type" type="hidden" value="exit">
+                <button onclick="closeAndSubmitModal('objectNameOptions1')">Submit</button>
+                <button type="button" onclick="closeModal('myModal1')">Close</button>
+            </form>
+        </div>
+        <div id="exitoverlay" class="modal-overlay"></div>
+        <button onclick="openModal('exitmodal')">exit squire</button>
+    
         <!-- Repeat for additional buttons and modals -->
         <div id="myModal2" class="modal">
             <p>Choose an option:</p>
