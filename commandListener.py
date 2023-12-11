@@ -234,12 +234,54 @@ def combat(action, name, misc_value):
   match action:
     case "hp":
       # change HP value
+      for widget in initiative_list:
+        print (widget.winfo_children()[1].cget("text"))
+        if widget.winfo_children()[1].cget("text") == name: # if a widget value somewhere is the same as the player's name, change the value and break
+          new_entry = tkinter.Frame(initiative_frame)
+          new_text = tkinter.Label(new_entry, text=widget.winfo_children()[0].cget("text"),font=("Arial", 18))
+          new_name = tkinter.Label(new_entry,text=widget.winfo_children()[1].cget("text"),font=("Arial", 18))
+          new_hp = tkinter.Label(new_entry,text=str(misc_value),font=("Arial", 18))
+          new_cond = tkinter.Label(new_entry,text=widget.winfo_children()[3].cget("text"),font=("Arial", 18))
+        elif widget.winfo_children()[1].cget("text") != "Name": # compare initiative values here
+          new_entry = tkinter.Frame(initiative_frame)
+          new_text = tkinter.Label(new_entry, text=widget.winfo_children()[0].cget("text"),font=("Arial", 18))
+          new_name = tkinter.Label(new_entry,text=widget.winfo_children()[1].cget("text"),font=("Arial", 18))
+          new_hp = tkinter.Label(new_entry,text=widget.winfo_children()[2].cget("text"),font=("Arial", 18))
+          new_cond = tkinter.Label(new_entry,text=widget.winfo_children()[3].cget("text"),font=("Arial", 18))
       pass
     case "condition":
       # change conditions of thing
+      for widget in initiative_list:
+        print (widget.winfo_children()[1].cget("text"))
+        if widget.winfo_children()[1].cget("text") == name: # if a widget value somewhere is the same as the player's name, change the value and break
+          new_entry = tkinter.Frame(initiative_frame)
+          new_text = tkinter.Label(new_entry, text=widget.winfo_children()[0].cget("text"),font=("Arial", 18))
+          new_name = tkinter.Label(new_entry,text=widget.winfo_children()[1].cget("text"),font=("Arial", 18))
+          new_hp = tkinter.Label(new_entry,text=widget.winfo_children()[2].cget("text"),font=("Arial", 18))
+          new_cond = tkinter.Label(new_entry,text=str(misc_value),font=("Arial", 18))
+        elif widget.winfo_children()[1].cget("text") != "Name": # compare initiative values here
+          new_entry = tkinter.Frame(initiative_frame)
+          new_text = tkinter.Label(new_entry, text=widget.winfo_children()[0].cget("text"),font=("Arial", 18))
+          new_name = tkinter.Label(new_entry,text=widget.winfo_children()[1].cget("text"),font=("Arial", 18))
+          new_hp = tkinter.Label(new_entry,text=widget.winfo_children()[2].cget("text"),font=("Arial", 18))
+          new_cond = tkinter.Label(new_entry,text=widget.winfo_children()[3].cget("text"),font=("Arial", 18))
       pass
     case "remove conditions":
       # change conditions of thing
+      for widget in initiative_list:
+        print (widget.winfo_children()[1].cget("text"))
+        if widget.winfo_children()[1].cget("text") == name: # if a widget value somewhere is the same as the player's name, change the value and break
+          new_entry = tkinter.Frame(initiative_frame)
+          new_text = tkinter.Label(new_entry, text=widget.winfo_children()[0].cget("text"),font=("Arial", 18))
+          new_name = tkinter.Label(new_entry,text=widget.winfo_children()[1].cget("text"),font=("Arial", 18))
+          new_hp = tkinter.Label(new_entry,text=widget.winfo_children()[2].cget("text"),font=("Arial", 18))
+          new_cond = tkinter.Label(new_entry,text='---',font=("Arial", 18))
+        elif widget.winfo_children()[1].cget("text") != "Name": # compare initiative values here
+          new_entry = tkinter.Frame(initiative_frame)
+          new_text = tkinter.Label(new_entry, text=widget.winfo_children()[0].cget("text"),font=("Arial", 18))
+          new_name = tkinter.Label(new_entry,text=widget.winfo_children()[1].cget("text"),font=("Arial", 18))
+          new_hp = tkinter.Label(new_entry,text=widget.winfo_children()[2].cget("text"),font=("Arial", 18))
+          new_cond = tkinter.Label(new_entry,text=widget.winfo_children()[3].cget("text"),font=("Arial", 18))
       pass
     case "initiative":
       # add or change someone's init
