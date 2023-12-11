@@ -46,7 +46,7 @@ def roll(quantity,sides,mod,pub, view):
     sum += addend
   output = f"The total roll of {quantity}d{sides} + {mod} is:"
   roll_frame = tkinter.Frame(master,height=20,width=20,highlightbackground="black",highlightthickness=2,highlightcolor="black")
-  roll_text = tkinter.Label(roll_frame, text=output)
+  roll_text = tkinter.Label(roll_frame, text=output,font=("Arial", 20))
   roll_value = tkinter.Label(roll_frame, text=str(sum),font=("Arial", 36))
   widgets[0] = roll_frame
   output_window()
@@ -230,10 +230,10 @@ def combat(action, name, misc_value):
   initiative_frame = tkinter.Frame(master, height=50, width=10,highlightbackground="black",highlightthickness=2,highlightcolor="black")
 
   header_entry = tkinter.Frame(initiative_frame)
-  header_text = tkinter.Label(header_entry,text="Initiative Count",wraplength=100)
-  header_name = tkinter.Label(header_entry,text="Name")
-  header_hp = tkinter.Label(header_entry,text="Hit Points")
-  header_cond = tkinter.Label(header_entry,text="Conditions")
+  header_text = tkinter.Label(header_entry,text="Initiative Count",wraplength=100,font=("Arial", 20))
+  header_name = tkinter.Label(header_entry,text="Name",font=("Arial", 20))
+  header_hp = tkinter.Label(header_entry,text="Hit Points",font=("Arial", 20))
+  header_cond = tkinter.Label(header_entry,text="Conditions",font=("Arial", 20))
 
   match action:
     case "hp":
@@ -252,22 +252,22 @@ def combat(action, name, misc_value):
         print (widget.winfo_children()[1].cget("text"))
         if widget.winfo_children()[1].cget("text") == name: # if a widget value somewhere is the same as the player's name, change the value and break
           new_entry = tkinter.Frame(initiative_frame)
-          new_text = tkinter.Label(new_entry, text=str(misc_value))
-          new_name = tkinter.Label(new_entry,text=widget.winfo_children()[1].cget("text"))
-          new_hp = tkinter.Label(new_entry,text=widget.winfo_children()[2].cget("text"))
-          new_cond = tkinter.Label(new_entry,text=widget.winfo_children()[3].cget("text"))
+          new_text = tkinter.Label(new_entry, text=str(misc_value),font=("Arial", 18))
+          new_name = tkinter.Label(new_entry,text=widget.winfo_children()[1].cget("text"),font=("Arial", 18))
+          new_hp = tkinter.Label(new_entry,text=widget.winfo_children()[2].cget("text"),font=("Arial", 18))
+          new_cond = tkinter.Label(new_entry,text=widget.winfo_children()[3].cget("text"),font=("Arial", 18))
         elif widget.winfo_children()[1].cget("text") != "Name": # compare initiative values here
           new_entry = tkinter.Frame(initiative_frame)
-          new_text = tkinter.Label(new_entry, text=widget.winfo_children()[0].cget("text"))
-          new_name = tkinter.Label(new_entry,text=widget.winfo_children()[1].cget("text"))
-          new_hp = tkinter.Label(new_entry,text=widget.winfo_children()[2].cget("text"))
-          new_cond = tkinter.Label(new_entry,text=widget.winfo_children()[3].cget("text"))
+          new_text = tkinter.Label(new_entry, text=widget.winfo_children()[0].cget("text"),font=("Arial", 18))
+          new_name = tkinter.Label(new_entry,text=widget.winfo_children()[1].cget("text"),font=("Arial", 18))
+          new_hp = tkinter.Label(new_entry,text=widget.winfo_children()[2].cget("text"),font=("Arial", 18))
+          new_cond = tkinter.Label(new_entry,text=widget.winfo_children()[3].cget("text"),font=("Arial", 18))
       
       initiative_entry = tkinter.Frame(initiative_frame)
-      initiative_text = tkinter.Label(initiative_entry,text=str(misc_value))
-      character_name = tkinter.Label(initiative_entry,text=name)
-      character_hp = tkinter.Label(initiative_entry,text="---")
-      character_cond = tkinter.Label(initiative_entry,text="---")
+      initiative_text = tkinter.Label(initiative_entry,text=str(misc_value),font=("Arial", 18))
+      character_name = tkinter.Label(initiative_entry,text=name,font=("Arial", 18))
+      character_hp = tkinter.Label(initiative_entry,text="---",font=("Arial", 18))
+      character_cond = tkinter.Label(initiative_entry,text="---",font=("Arial", 18))
 
       # if it does, just change the value
       pass
