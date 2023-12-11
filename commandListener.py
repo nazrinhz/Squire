@@ -163,6 +163,15 @@ def feature(filepath, name, view):
       obj_list = filejson["skill"]
       featurejson = next((x for x in obj_list if x["name"] == name), None)
       print(featurejson)
+      name = tkinter.Label(feature_box, text=featurejson["name"], font=("Arial", 20), justify='left',wraplength=500)
+      where_in_book = f'{featurejson["source"]} {featurejson["page"]}'
+      source = tkinter.Label(feature_box, text=where_in_book, justify='left',wraplength=500)
+      for entry in featurejson["entries"]:
+        if type(entry) == str:
+          paragraph = tkinter.Label(feature_box,text=entry, justify='left',wraplength=500)
+        elif type(entry) == dict:
+          for bullet in entry["items"]:
+            point = tkinter.Label(feature_box, text=bullet,justify='left',wraplength=350)
       print("fill in skill")
     elif "race" in filejson:
       obj_list = filejson["race"]
@@ -320,7 +329,7 @@ label1 = tkinter.Label(master, text='Features!!')
 label1.pack()
 
 # feature("./5etools/data/spells/spells-phb.json","Magic Missile", True)
-image("5etools/MM/Aarakocra.png", True)
+image("5etools/MM/Goblin.png", True)
 roll(8,6,0,True,True)
 combat("initiative", "Fizzcrack", 13)
 combat("initiative", "Varuk", 10)
