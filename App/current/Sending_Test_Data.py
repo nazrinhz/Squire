@@ -44,6 +44,10 @@ match sys.argv[1]:
         send_command(sys.argv[1], {"filepath":sys.argv[2], "featurename":sys.argv[3], "view":True})
         pass
     case "roll":
+        send_command(sys.argv[1], {"quantity":sys.argv[2], "sides":sys.argv[3], "modifier":sys.argv[4], "pub":True, "view":True})
+        pass
+    case "combat":
+        send_command(sys.argv[1], {"action":sys.argv[2],"name":sys.argv[3],"misc_value":sys.argv[4]})
         pass
 # send_command("feature", {"filepath":"./5etools/data/spells/spells-phb.json", "featurename":"Magic Missile", "view":True})
 # send_command("roll", {"quantity":8, "sides":6, "modifier":0, "pub":True, "view":True})
