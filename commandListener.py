@@ -151,11 +151,10 @@ def feature(filepath, name, view):
       name = tkinter.Label(feature_box, text=featurejson["name"], font=("Arial", 20), justify='left',wraplength=500)
       where_in_book = f'{featurejson["source"]} {featurejson["page"]}'
       source = tkinter.Label(feature_box, text=where_in_book, justify='left',wraplength=500)
-
       for entry in featurejson["entries"]:
-        if type(entry) == "str":
+        if type(entry) == str:
           paragraph = tkinter.Label(feature_box,text=entry, justify='left',wraplength=500)
-        elif type(entry) == "dict":
+        elif type(entry) == dict:
           for bullet in entry["items"]:
             point = tkinter.Label(feature_box, text=bullet)
       print("class feature")
