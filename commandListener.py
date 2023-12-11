@@ -301,9 +301,10 @@ def output_window():
   for child in widgets[2].winfo_children():
     child.pack()
   widgets[3].grid(column=2,row=0, rowspan=2)
-  widgets[3].winfo_children()[0].pack()
-  for grandchild in widgets[3].winfo_children()[0].winfo_children():
-      grandchild.pack(side="left")
+  if len(widgets[3].winfo_children()) >0:
+    widgets[3].winfo_children()[0].pack()
+    for grandchild in widgets[3].winfo_children()[0].winfo_children():
+        grandchild.pack(side="left")
 
   initiative_list = [(child, float(child.winfo_children()[0].cget("text"))) for child in widgets[3].winfo_children()[1:]]
   init_sorted = sorted(initiative_list, key=lambda x: x[1], reverse=True)
@@ -319,8 +320,8 @@ label1 = tkinter.Label(master, text='Features!!')
 label1.pack()
 
 # feature("./5etools/data/spells/spells-phb.json","Magic Missile", True)
-# image("5etools/MM/Aarakocra.png", True)
-# roll(3,6,0,True,True)
+image("5etools/MM/Aarakocra.png", True)
+roll(8,6,0,True,True)
 combat("initiative", "Fizzcrack", 13)
 combat("initiative", "Varuk", 10)
 feature("./5etools/data/feats.json","Athlete", True)
