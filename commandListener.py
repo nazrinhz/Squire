@@ -235,7 +235,6 @@ def combat(action, name, misc_value):
     case "hp":
       # change HP value
       for widget in initiative_list:
-        print (widget.winfo_children()[1].cget("text"))
         if widget.winfo_children()[1].cget("text") == name: # if a widget value somewhere is the same as the player's name, change the value and break
           new_entry = tkinter.Frame(initiative_frame)
           new_text = tkinter.Label(new_entry, text=widget.winfo_children()[0].cget("text"),font=("Arial", 18))
@@ -252,7 +251,6 @@ def combat(action, name, misc_value):
     case "condition":
       # change conditions of thing
       for widget in initiative_list:
-        print (widget.winfo_children()[1].cget("text"))
         if widget.winfo_children()[1].cget("text") == name: # if a widget value somewhere is the same as the player's name, change the value and break
           new_entry = tkinter.Frame(initiative_frame)
           new_text = tkinter.Label(new_entry, text=widget.winfo_children()[0].cget("text"),font=("Arial", 18))
@@ -269,7 +267,6 @@ def combat(action, name, misc_value):
     case "remove conditions":
       # change conditions of thing
       for widget in initiative_list:
-        print (widget.winfo_children()[1].cget("text"))
         if widget.winfo_children()[1].cget("text") == name: # if a widget value somewhere is the same as the player's name, change the value and break
           new_entry = tkinter.Frame(initiative_frame)
           new_text = tkinter.Label(new_entry, text=widget.winfo_children()[0].cget("text"),font=("Arial", 18))
@@ -287,7 +284,6 @@ def combat(action, name, misc_value):
       # add or change someone's init
       # if widget with name does not exist, make one
       for widget in initiative_list:
-        print (widget.winfo_children()[1].cget("text"))
         if widget.winfo_children()[1].cget("text") == name: # if a widget value somewhere is the same as the player's name, change the value and break
           new_entry = tkinter.Frame(initiative_frame)
           new_text = tkinter.Label(new_entry, text=str(misc_value),font=("Arial", 18))
