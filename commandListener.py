@@ -35,6 +35,8 @@ def on_commands(command: Command):
         combat(command.value["action"], command.value["name"], command.value["misc_value"])
       else:
         combat(command.value["action"], command.value["name"], 0)
+    case "exit":
+      exit()
 
   iotc.send_property({"LastCommandReceived": command.name})
   command.reply()
@@ -217,13 +219,6 @@ def image(filepath, view):
   widgets[2] = tkinter.Label(master, image=img)
   widgets[2].image = img
   output_window()
-pass
-
-def database(action, filepath, view):
-  # if add, do this
-
-  # if remove, do this
-  pass
 
 def combat(action, name, misc_value):
   initiative_list = widgets[3].winfo_children()

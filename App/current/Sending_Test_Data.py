@@ -44,7 +44,7 @@ match sys.argv[1]:
         send_command(sys.argv[1], {"filepath":sys.argv[2], "featurename":sys.argv[3], "view":True})
         pass
     case "roll":
-        send_command(sys.argv[1], {"quantity":sys.argv[2], "sides":sys.argv[3], "modifier":sys.argv[4], "pub":True, "view":True})
+        send_command(sys.argv[1], {"quantity":sys.argv[2], "numofsides":sys.argv[3], "modifier":sys.argv[4], "publicprivate":True, "showhide":True})
         pass
     case "combat":
         send_command(sys.argv[1], {"action":sys.argv[2],"name":sys.argv[3],"misc_value":sys.argv[4]})

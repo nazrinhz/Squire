@@ -101,7 +101,7 @@
                 <input name="type" type="hidden" value="image">
                 <input type="text" id="textInput1" name="object_name" placeholder="Enter text here">
                 <!-- 保持原有的下拉菜单 -->
-                <button onclick="closeAndSubmitModal('objectNameOptions1')">Submit</button>
+                <button type="submit">Submit</button>
                 <button type="button" onclick="closeModal('myModal1')">Close</button>
 
             </form>
@@ -117,9 +117,18 @@
                 <p>Select the type of feature and enter its name:</p>
                 <input name="type" type="hidden" value="feature">
                 <select name="feature_type">
-                    <option value="type1">Type 1</option>
-                    <option value="type2">Type 2</option>
-                    <!-- Other types -->
+                    <option value="barbarian">Barbarian</option>
+                    <option value="bard">Bard</option>
+                    <option value="cleric">Cleric</option>
+                    <option value="druid">Druid</option>
+                    <option value="fighter">Fighter</option>
+                    <option value="monk">Monk</option>
+                    <option value="paladin">Paladin</option>
+                    <option value="ranger">Ranger</option>
+                    <option value="rogue">Rogue</option>
+                    <option value="sorcerer">Sorcerer</option>
+                    <option value="warlock">Warlock</option>
+                    <option value="wizard">Wizard</option>
                 </select>
                 <input type="text" name="feature_name" placeholder="Feature Name">
                 <button type="submit">Submit</button>
@@ -129,34 +138,24 @@
         
         <button class="button" onclick="openModal('featureModal')">Show Class Feature</button>
 
-                <!-- Show Spell Modal -->
-                <div id="spellModal" class="modal" style="display:none;">
-                    <form id="spellForm" class="form-grid" action="{{ url_for('run_script') }}" method="post">
-                        <p>Select the type of spell and enter its name:</p>
-                        <input name="type" type="hidden" value="spell">
-                        <select name="spell_type">
-                            <option value="type1">Type 1</option>
-                            <option value="type2">Type 2</option>
-                            <!-- Other types -->
-                        </select>
-                        <input type="text" name="spell_name" placeholder="Spell Name">
-                        <button type="submit">Submit</button>
-                        <button type="button" onclick="closeModal('spellModal')">Close</button>
-                    </form>
-                </div>
-                
-                <button class="button" onclick="openModal('featureModal')">Show Spell Feature</button>
+        <!-- Show Spell Modal -->
+        <div id="spellModal" class="modal" style="display:none;">
+            <form id="spellForm" class="form-grid" action="{{ url_for('run_script') }}" method="post">
+                <p>Select the type of spell and enter its name:</p>
+                <input name="type" type="hidden" value="spell">
+                <input type="text" name="spell_name" placeholder="Spell Name">
+                <button type="submit">Submit</button>
+                <button type="button" onclick="closeModal('spellModal')">Close</button>
+            </form>
+        </div>
+    
+        <button class="button" onclick="openModal('spellModal')">Show Spell Feature</button>
 
         <!-- Show Feat Modal -->
         <div id="featModal" class="modal" style="display:none;">
             <form id="featForm" class="form-grid" action="{{ url_for('run_script') }}" method="post">
                 <p>Select the type of feature and enter its name:</p>
                 <input name="type" type="hidden" value="feat">
-                <select name="feat_type">
-                    <option value="type1">Type 1</option>
-                    <option value="type2">Type 2</option>
-                    <!-- Other types -->
-                </select>
                 <input type="text" name="feat_name" placeholder="Feat Name">
                 <button type="submit">Submit</button>
                 <button type="button" onclick="closeModal('featModal')">Close</button>
@@ -174,7 +173,7 @@
                 <input type="text" name="new_value" placeholder="New Value">
                 <select name="action">
                     <option value="hp">HP</option>
-                    <option value="conditino">Condition</option>
+                    <option value="condition">Condition</option>
                     <option value="initiative">Initiative</option>
                     <!-- Other types -->
                 </select>
