@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, request, url_for, flash
+from flask import Flask, render_template, redirect, request, url_for, flash, session
 import sys
 import os
 import subprocess
@@ -7,6 +7,7 @@ baseLocationStr = os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpa
 sys.path.append(baseLocationStr)
 
 app = Flask(__name__)
+app.secret_key = 'goblindeez'
 
 @app.route("/")
 def Menu():
@@ -14,10 +15,12 @@ def Menu():
 
 @app.route("/dm")
 def DMSide():
+    session['previous_page'] = request.url
     return render_template("dm2.html")
 
 @app.route("/player")
 def PlayerSide():
+    session['previous_page'] = request.url
     return render_template("player.html")
 
 @app.route("/button")
@@ -63,7 +66,8 @@ def run_script():
             #subprocess.run(['python', 'App\current\Sending_Test_Data.py',"combat",request.form["action"],request.form["creature_name"],request.form["misc_string"]])
             subprocess.run(['python', 'Sending_Test_Data.py',"combat",request.form["action"],request.form["creature_name"],request.form["misc_string"]])
             pass
-    return redirect("/dm")
+    previous_page = session.pop('previous_page', None)
+    return redirect(previous_page)
 
 
 @app.route("/test")
