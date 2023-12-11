@@ -57,7 +57,7 @@ def feature(filepath, name, view):
   print("here")
   with open(filepath) as file:
     filejson = json.load(file)
-    feature_box = tkinter.Frame(master, height=10,width=50)
+    feature_box = tkinter.Frame(master, height=10,width=50,highlightbackground="black",highlightthickness=2,highlightcolor="black")
     if "spell" in filejson:
       obj_list = filejson["spell"]
       featurejson = next((x for x in obj_list if x["name"] == name), None)
@@ -227,7 +227,7 @@ def database(action, filepath, view):
 
 def combat(action, name, misc_value):
   initiative_list = widgets[3].winfo_children()
-  initiative_frame = tkinter.Frame(master, height=50, width=10)
+  initiative_frame = tkinter.Frame(master, height=50, width=10,highlightbackground="black",highlightthickness=2,highlightcolor="black")
 
   header_entry = tkinter.Frame(initiative_frame)
   header_text = tkinter.Label(header_entry,text="Initiative Count",wraplength=100)
