@@ -34,9 +34,17 @@ def send_command(command, request):
     print(resp.json())
 
 # switch(sys.argv[1])
-path = "5etools/MM/" + sys.argv[2] + ".png"
-print(path)
-send_command(sys.argv[1], {"filepath":path, "view":True})
+# path = "5etools/MM/" + sys.argv[2] + ".png"
+# print(path)
+match sys.argv[1]:
+    case "image":
+        send_command(sys.argv[1], {"filepath":sys.argv[2],"view":True})
+        pass
+    case "feature":
+        send_command(sys.argv[1], {"filepath":sys.argv[2], "featurename":sys.argv[3], "view":True})
+        pass
+    case "roll":
+        pass
 # send_command("feature", {"filepath":"./5etools/data/spells/spells-phb.json", "featurename":"Magic Missile", "view":True})
 # send_command("roll", {"quantity":8, "sides":6, "modifier":0, "pub":True, "view":True})
 # send_command("image", {"filepath":"5etools/MM/Aarakocra.png", "view":True})

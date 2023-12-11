@@ -102,13 +102,8 @@
             <form class="form-grid" action="{{ url_for('run_script') }}" method="post">
                 <p>Choose an option and enter the name of the image:</p>
                 <input name="type" type="hidden" value="image">
-                <input type="text" id="textInput1" name="text_input" placeholder="Enter text here">
+                <input type="text" id="textInput1" name="object_name" placeholder="Enter text here">
                 <!-- 保持原有的下拉菜单 -->
-                <select id="objectNameOptions1" name="object_name">
-                    <option value="Aarakocra">Aarakocra</option>
-                    <option value="Option1">Option 1</option>
-                    <!-- Add more options as needed -->
-                </select>
                 <button onclick="closeAndSubmitModal('objectNameOptions1')">Submit</button>
                 <button type="button" onclick="closeModal('myModal1')">Close</button>
 

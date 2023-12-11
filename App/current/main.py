@@ -28,8 +28,25 @@ def button():
 def run_script():
     # Run your Python script here
     object_type = request.form["type"]
-    object_name = request.form["object_name"]
-    subprocess.run(['python', 'App\current\Sending_Test_Data.py',object_type,object_name])
+    match object_type:
+        case "image":    
+            object_name = request.form["object_name"]
+            path = "5etools/MM/" + object_name + ".png"
+            # payload = {"filepath":path, "view":True}
+            subprocess.run(['python', 'App\current\Sending_Test_Data.py',"image",path])
+        case "feature":
+            # feature("./5etools/data/spells/spells-phb.json","Magic Missile", True)
+            class_name = request.form["class_name"]
+            path = f'./5etools/data/class/class-{class_name.lower()}.json'
+            feature_name = request.form["feature_name"]
+            subprocess.run(['python', 'App\current\Sending_Test_Data.py',"feature",path,feature_name])
+            pass
+        case "spell":
+            pass
+        case "feat":
+            pass
+        case "roll":
+            pass
     return redirect("/dm")
 
 
