@@ -138,10 +138,11 @@
                 <p>Enter dice count and type:</p>
                 <input type="number" name="dice_count" min="1" placeholder="Dice Count">
                 <select name="dice_type">
-                    <option value="d4">d4</option>
-                    <option value="d6">d6</option>
+                    <option value="4">d4</option>
+                    <option value="6">d6</option>
                     <!-- Other dice types -->
                 </select>
+                <input type="number" name="modifier" min="0" placeholder="Modifier">
                 <button type="submit" class="button">Roll</button>
                 <button type="button" onclick="closeModal('diceModal')">Close</button>
             </form>
