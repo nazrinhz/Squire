@@ -156,7 +156,7 @@ def feature(filepath, name, view):
           paragraph = tkinter.Label(feature_box,text=entry, justify='left',wraplength=500)
         elif type(entry) == dict:
           for bullet in entry["items"]:
-            point = tkinter.Label(feature_box, text=bullet)
+            point = tkinter.Label(feature_box, text=bullet,justify='left',wraplength=250)
       print("class feature")
       print("fill in feat")
     elif "skill" in filejson:
