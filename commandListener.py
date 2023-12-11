@@ -127,13 +127,13 @@ def feature(filepath, name, view):
       where_in_book = f'{featurejson["source"]} {featurejson["page"]}'
       source = tkinter.Label(feature_box, text=where_in_book, justify='left',wraplength=500)
       if featurejson["level"] == 1:
-        level_info = f'1st-level {get_spell_type(featurejson["className"])}'
+        level_info = f'1st-level {featurejson["className"]}'
       elif featurejson["level"] == 2:
-        level_info = f'2nd-level {get_spell_type(featurejson["className"])}'
+        level_info = f'2nd-level {featurejson["className"]}'
       elif featurejson["level"] == 3:
-        level_info = f'3rd-level {get_spell_type(featurejson["className"])}'
+        level_info = f'3rd-level {featurejson["className"]}'
       else:
-        level_info = f'{featurejson["level"]}th-level {get_spell_type(featurejson["className"])}'
+        level_info = f'{featurejson["level"]}th-level {featurejson["className"]}'
       if sub_feature:
         level_info = level_info + f' ({featurejson["subclassShortName"]}) Feature'
       else:
@@ -142,9 +142,6 @@ def feature(filepath, name, view):
 
       for entry in featurejson["entries"]:
         paragraph = tkinter.Label(feature_box,text=entry, justify='left',wraplength=500)
-      """ 
-      entries
-      """
       print("class feature")
 
     elif "feat" in filejson:
