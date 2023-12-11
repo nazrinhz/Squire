@@ -324,7 +324,7 @@ label1.pack()
 # roll(3,6,0,True,True)
 combat("initiative", "Fizzcrack", 13)
 combat("initiative", "Varuk", 10)
-feature("./5etools/data/class/class-rogue.json","Stroke of Luck", True)
+feature("./5etools/data/feats.json","Athlete", True)
 
 # Run forever!
 master.mainloop()
