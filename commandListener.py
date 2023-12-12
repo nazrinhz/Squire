@@ -111,7 +111,7 @@ def feature(filepath, name, view):
       elif featurejson["duration"][0]["type"] == "instant":
         dur_text = f'Duration: Instantaneous'
       if "concentration" in featurejson["duration"][0]:
-        dur_text = dur_text + "Requires Concentration"
+        dur_text = dur_text + " (Requires Concentration)"
       dur_widget = tkinter.Label(feature_box,text=dur_text,justify='left',wraplength=500)
 
       for entry in featurejson["entries"]:
@@ -281,6 +281,7 @@ def combat(action, name, misc_value):
           new_cond = tkinter.Label(new_entry,text=widget.winfo_children()[3].cget("text"),font=("Arial", 18))
       pass
     case "initiative":
+      in_list = False
       # add or change someone's init
       # if widget with name does not exist, make one
       for widget in initiative_list:
@@ -290,18 +291,19 @@ def combat(action, name, misc_value):
           new_name = tkinter.Label(new_entry,text=widget.winfo_children()[1].cget("text"),font=("Arial", 18))
           new_hp = tkinter.Label(new_entry,text=widget.winfo_children()[2].cget("text"),font=("Arial", 18))
           new_cond = tkinter.Label(new_entry,text=widget.winfo_children()[3].cget("text"),font=("Arial", 18))
+          in_list = True
         elif widget.winfo_children()[1].cget("text") != "Name": # compare initiative values here
           new_entry = tkinter.Frame(initiative_frame)
           new_text = tkinter.Label(new_entry, text=widget.winfo_children()[0].cget("text"),font=("Arial", 18))
           new_name = tkinter.Label(new_entry,text=widget.winfo_children()[1].cget("text"),font=("Arial", 18))
           new_hp = tkinter.Label(new_entry,text=widget.winfo_children()[2].cget("text"),font=("Arial", 18))
           new_cond = tkinter.Label(new_entry,text=widget.winfo_children()[3].cget("text"),font=("Arial", 18))
-      
-      initiative_entry = tkinter.Frame(initiative_frame)
-      initiative_text = tkinter.Label(initiative_entry,text=str(misc_value),font=("Arial", 18))
-      character_name = tkinter.Label(initiative_entry,text=name,font=("Arial", 18))
-      character_hp = tkinter.Label(initiative_entry,text="---",font=("Arial", 18))
-      character_cond = tkinter.Label(initiative_entry,text="---",font=("Arial", 18))
+      if not in_list:
+        initiative_entry = tkinter.Frame(initiative_frame)
+        initiative_text = tkinter.Label(initiative_entry,text=str(misc_value),font=("Arial", 18))
+        character_name = tkinter.Label(initiative_entry,text=name,font=("Arial", 18))
+        character_hp = tkinter.Label(initiative_entry,text="---",font=("Arial", 18))
+        character_cond = tkinter.Label(initiative_entry,text="---",font=("Arial", 18))
 
       # if it does, just change the value
       pass
