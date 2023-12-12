@@ -45,7 +45,7 @@ def on_commands(command: Command):
         exit()
   except Exception as error:
     with open(file="./errors.txt", mode="a") as file:
-      file.write(str(error))
+      file.write(f'Error occurred:\n {str(error)}\nat {time.ctime(time.time())}.\n')
     exit()
     
 
