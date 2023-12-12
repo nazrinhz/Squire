@@ -67,8 +67,8 @@ def run_script():
             # subprocess.run(['python', 'Sending_Test_Data.py',"combat",request.form["action"],request.form["creature_name"],request.form["misc_string"]])
             pass
         case "exit":
-            #subprocess.run(['python', 'App\current\Sending_Test_Data.py',"exit"])
-            subprocess.run(['python', 'Sending_Test_Data.py',"exit"])
+            subprocess.run(['python', 'App\current\Sending_Test_Data.py',"exit"])
+            # subprocess.run(['python', 'Sending_Test_Data.py',"exit"])
             pass
     previous_page = session.pop('previous_page', None)
     return redirect(previous_page)
