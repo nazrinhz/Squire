@@ -16,7 +16,7 @@ def Menu():
 @app.route("/dm")
 def DMSide():
     session['previous_page'] = request.url
-    return render_template("dm2.html")
+    return render_template("dm3.html")
 
 @app.route("/player")
 def PlayerSide():
