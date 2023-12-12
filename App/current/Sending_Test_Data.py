@@ -12,16 +12,28 @@ sender_id = 'znvog4j7bm'
 api_key = "SharedAccessSignature sr=49c3d3e0-9e6b-4c2a-b6ca-7c0a9e1dffe5&sig=0%2B2sZFGkGRMvqgEDvFZq26%2F0%2BzeuzMVCP31fcG44%2FmY%3D&skn=Lab6&se=1727897016818"
 current_command = "SendData" # change to feature
 
+"""Command URL Function
+Description: This function gets the full URL for the command being sent and outputs it as a string.
+returns:str
+parameters:none"""
 def _command_url():
     return f"https://{iotc_sub_domain}.azureiotcentral.com/api/devices/{sender_id}/commands/{current_command}?api-version=2022-05-31&"
 
+"""Headers Function
+Description: This function gets the required authorization headers for the command being sent and outputs it as a string.
+returns:dict representing a JSON object
+parameters:none"""
 def _headers():
     headers = {
         "Content-Type": "application/json",
         "Authorization": api_key
     }
     return headers
-    
+
+"""Send Command Function
+Description: This function sends the POST request for the input command and payload data.
+returns:none
+parameters: command:str, request:dict"""
 def send_command(command, request):
     global current_command
     current_command = command

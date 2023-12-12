@@ -17,31 +17,45 @@ scope_id = '0ne00ADFF24'
 device_id = 'znvog4j7bm'
 device_key = '9QClbv6uFfoqr4uuIUe0rbz/ILe2tLu2hXO4NtB0HmI='
 
+"""Command Callback Function
+Description: This function is wired to the command reciever callback of the Azure Device. It reads the command name and value to interpret into one of the other functions contained.
+returns:none, but essentially returns another function.
+parameters: command:Command (an iotc value to interpret commands from Azure properly)"""
 def on_commands(command: Command):
-  print(f"{command.name} command was sent")
-  match command.name:
-    case "SendData":
-      pprint(vars(command))
-    case "roll":
-      roll(command.value["quantity"], command.value["numofsides"],command.value["modifier"], command.value["publicprivate"], command.value["showhide"])
-    case "feature":
-      print(command.value)
-      # print(type(command.value))
-      feature(command.value["filepath"], command.value["featurename"], command.value["view"])
-    case "image":
-      image(command.value["filepath"], command.value["view"])
-    case "combat":
-      if "misc_value" in command.value:
-        combat(command.value["action"], command.value["name"], command.value["misc_value"])
-      else:
-        combat(command.value["action"], command.value["name"], 0)
-    case "exit":
-      master.destroy()
-      exit()
+  try:
+    print(f"{command.name} command was sent")
+    match command.name:
+      case "SendData":
+        pprint(vars(command))
+      case "roll":
+        roll(command.value["quantity"], command.value["numofsides"],command.value["modifier"], command.value["publicprivate"], command.value["showhide"])
+      case "feature":
+        print(command.value)
+        # print(type(command.value))
+        feature(command.value["filepath"], command.value["featurename"], command.value["view"])
+      case "image":
+        image(command.value["filepath"], command.value["view"])
+      case "combat":
+        if "misc_value" in command.value:
+          combat(command.value["action"], command.value["name"], command.value["misc_value"])
+        else:
+          combat(command.value["action"], command.value["name"], 0)
+      case "exit":
+        master.destroy()
+        exit()
+  except Exception as error:
+    with open(file="./errors.txt", mode="a") as file:
+      file.write(str(error))
+    exit()
+    
 
   iotc.send_property({"LastCommandReceived": command.name})
   command.reply()
 
+"""Roll Dice Function
+Description: This function handles the rolling of dice and outputs them as a tkinter widget.
+returns:none, but essentially returns a tkinter widget
+parameters: quantity:str, sides:str, mod:str, pub:bool, view:bool"""
 def roll(quantity,sides,mod,pub, view):
   sum = int(mod)
   for i in range(int(quantity)):
@@ -56,6 +70,10 @@ def roll(quantity,sides,mod,pub, view):
   pass
   # return literals
 
+"""Show Feature Function
+Description: This function handles the visualizing of features and outputs them as a tkinter widget. Many different features from many different files can be shown and handled.
+returns:none, but essentially returns a tkinter widget
+parameters: filepath:str, name:str, view:bool"""
 def feature(filepath, name, view):
   print("here")
   with open(filepath) as file:
@@ -191,6 +209,10 @@ def feature(filepath, name, view):
     # print(file.readline())
   pass
 
+"""Get Spell Type Function
+Description: This function makes the formatting for spells easier.
+returns:string representing the full lowercase name of a spell school
+parameters: school:str"""
 def get_spell_type(school):
   if school == "A":
     return "abjuration"
@@ -211,6 +233,10 @@ def get_spell_type(school):
   else:
     return "Unknown Spell Type"
 
+"""Show Image Function
+Description: This function handles the showing of an image and outputs it as a tkinter widget.
+returns:none, but essentially returns a tkinter widget
+parameters: filepath:str, view:bool"""
 def image(filepath, view):
   print(filepath)
   # load from string
@@ -221,6 +247,10 @@ def image(filepath, view):
   widgets[2].image = img
   output_window()
 
+"""Combat Function
+Description: This function handles the various combat actions and outputs them as a tkinter widget.
+returns:none, but essentially returns a tkinter widget
+parameters: action:str, name:str, misc_value:str"""
 def combat(action, name, misc_value):
   initiative_list = widgets[3].winfo_children()
   initiative_frame = tkinter.Frame(master, height=50, width=10,highlightbackground="black",highlightthickness=2,highlightcolor="black")
@@ -326,6 +356,10 @@ master.geometry("2000x2000")
 
 widgets = [tkinter.Label(master,text="widget 1", height=20,width=20), tkinter.Label(master,text="send a feature command to see it here!", height=20,width=20), tkinter.Label(master,text="widget 3", height=20,width=20), tkinter.Label(master,text="widget 4", height=20,width=20)]
 
+"""Output Window Function
+Description: This function properly takes the tkinter widgets and packs them into a constant shape.
+returns:none, but essentially returns a tkinter widget
+parameters:none"""
 def output_window():
   for child in master.winfo_children():
     if child not in widgets:
