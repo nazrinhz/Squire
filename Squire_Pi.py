@@ -393,7 +393,7 @@ label1 = tkinter.Label(master, text='Features!!')
 label1.pack()
 
 # feature("./5etools/data/spells/spells-phb.json","Magic Missile", True)
-image("5etools/MM/Goblin.png", True)
+# image("5etools/MM/Goblin.png", True)
 roll(0,0,0,True,True)
 combat("clear", "Fizzcrack", 13)
 # combat("initiative", "Varuk", 10)
