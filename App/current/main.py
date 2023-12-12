@@ -16,7 +16,7 @@ def Menu():
 @app.route("/dm")
 def DMSide():
     session['previous_page'] = request.url
-    return render_template("dm3.html")
+    return render_template("dm.html")
 
 @app.route("/player")
 def PlayerSide():
@@ -67,7 +67,8 @@ def run_script():
             # subprocess.run(['python', 'Sending_Test_Data.py',"combat",request.form["action"],request.form["creature_name"],request.form["misc_string"]])
             pass
         case "exit":
-            subprocess.run(['python', 'App\current\Sending_Test_Data.py',"exit"])
+            #subprocess.run(['python', 'App\current\Sending_Test_Data.py',"exit"])
+            subprocess.run(['python', 'Sending_Test_Data.py',"exit"])
             pass
     previous_page = session.pop('previous_page', None)
     return redirect(previous_page)
