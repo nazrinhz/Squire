@@ -36,35 +36,38 @@ def run_script():
             object_name = request.form["object_name"]
             path = "5etools/MM/" + object_name + ".png"
             # payload = {"filepath":path, "view":True}
-            #subprocess.run(['python', 'App\current\Sending_Test_Data.py',"image",path])
-            subprocess.run(['python', 'Sending_Test_Data.py',"image",path])
+            subprocess.run(['python', 'App\current\Sending_Test_Data.py',"image",path])
+            # subprocess.run(['python', 'Sending_Test_Data.py',"image",path])
         case "feature":
             class_name = request.form["class_name"]
             path = f'./5etools/data/class/class-{class_name}.json'
             feature_name = request.form["feature_name"]
-            #subprocess.run(['python', 'App\current\Sending_Test_Data.py',"feature",path,feature_name])
-            subprocess.run(['python', 'Sending_Test_Data.py',"feature",path,feature_name])
+            subprocess.run(['python', 'App\current\Sending_Test_Data.py',"feature",path,feature_name])
+            # subprocess.run(['python', 'Sending_Test_Data.py',"feature",path,feature_name])
             pass
         case "spell":
             # feature("./5etools/data/spells/spells-phb.json","Magic Missile", True)
             path = './5etools/data/spells/spells-phb.json'
             feature_name = request.form["feature_name"]
-            #subprocess.run(['python', 'App\current\Sending_Test_Data.py',"feature",path,feature_name])
-            subprocess.run(['python', 'Sending_Test_Data.py',"feature",path,feature_name])
+            subprocess.run(['python', 'App\current\Sending_Test_Data.py',"feature",path,feature_name])
+            # subprocess.run(['python', 'Sending_Test_Data.py',"feature",path,feature_name])
             pass
         case "feat":
             path = './5etools/data/feats.json'
             feature_name = request.form["feature_name"]
-            #subprocess.run(['python', 'App\current\Sending_Test_Data.py',"feature",path,feature_name])
-            subprocess.run(['python', 'Sending_Test_Data.py',"feature",path,feature_name])
+            subprocess.run(['python', 'App\current\Sending_Test_Data.py',"feature",path,feature_name])
+            # subprocess.run(['python', 'Sending_Test_Data.py',"feature",path,feature_name])
             pass
         case "roll":
-            #subprocess.run(['python', 'App\current\Sending_Test_Data.py',"roll",request.form["dice_count"],request.form["dice_type"],request.form["modifier"]])
-            subprocess.run(['python', 'Sending_Test_Data.py',"roll",request.form["dice_count"],request.form["dice_type"],request.form["modifier"]])
+            subprocess.run(['python', 'App\current\Sending_Test_Data.py',"roll",request.form["dice_count"],request.form["dice_type"],request.form["modifier"]])
+            # subprocess.run(['python', 'Sending_Test_Data.py',"roll",request.form["dice_count"],request.form["dice_type"],request.form["modifier"]])
             pass
         case "combat":
-            #subprocess.run(['python', 'App\current\Sending_Test_Data.py',"combat",request.form["action"],request.form["creature_name"],request.form["misc_string"]])
-            subprocess.run(['python', 'Sending_Test_Data.py',"combat",request.form["action"],request.form["creature_name"],request.form["misc_string"]])
+            subprocess.run(['python', 'App\current\Sending_Test_Data.py',"combat",request.form["action"],request.form["creature_name"],request.form["misc_string"]])
+            # subprocess.run(['python', 'Sending_Test_Data.py',"combat",request.form["action"],request.form["creature_name"],request.form["misc_string"]])
+            pass
+        case "exit":
+            subprocess.run(['python', 'App\current\Sending_Test_Data.py',"exit"])
             pass
     previous_page = session.pop('previous_page', None)
     return redirect(previous_page)
